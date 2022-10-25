@@ -1,0 +1,90 @@
+  <div class="chat" style="height: 589px">
+    <div *ngIf="selectedUser.User.showScreen">
+      <div class="chat-header clearfix">
+        <div class="row">
+          <div class="col-lg-6">
+            <a
+              href="javascript:void(0);"
+              data-toggle="modal"
+              data-target="#view_info"
+            >
+              <img
+                src="{{selectedUser.User.image}}"
+                alt="avatar"
+              />
+            </a>
+            <div class="chat-about">
+              <h6 class="m-b-0">{{selectedUser.User.name}}</h6>
+              <small>Last seen: 2 hours ago</small>
+            </div>
+          </div>
+          <div class="col-lg-6 hidden-sm text-right">
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline-secondary"
+              ><i class="fa fa-camera"></i
+            ></a>
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline-primary"
+              ><i class="fa fa-image"></i
+            ></a>
+            <a href="javascript:void(0);" class="btn btn-outline-info"
+              ><i class="fa fa-cogs"></i
+            ></a>
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline-warning"
+              ><i class="fa fa-question"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="chat-history" #mydiv style="overflow-y: scroll;width: 100%;height: 430px;scrollbar-width: none;">
+        <ul class="m-b-0">
+          <li class="clearfix" *ngFor="let item of selectedUser.message"><!-- *ngFor="let item of message"-->
+            <!-- <div class="message-data text-right">
+              <span class="message-data-time">10:10 AM, Today</span>
+              <img
+                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                alt="avatar"
+              />
+            </div> -->
+            <div class="message " [ngClass]="(item.fromSelf == true) ? 'other-message float-right':'my-message'"><!--[ngClass]="(item.fromSelf == true) ? 'other-message float-right':'my-message'"-->
+              {{item.message}}
+              <span class="time">{{item.time_send}}</span>
+            </div>
+          </li>
+          <!-- <li class="clearfix">
+            <div class="message-data">
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+      <div class="chat-message clearfix">
+        <div class="input-group mb-0">
+          <div class="input-group-prepend" (click)="sendMsg()">
+            <span class="input-group-text"
+              ><i class="fa fa-send"></i
+            ></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter text here..."
+            [(ngModel)]="messageText"
+          />
+        </div>
+      </div>
+    </div>
+    
+    <div style="position:absolute;display: flex;flex-direction: column;align-items: center;margin-left: 17%;" *ngIf="!selectedUser.User.showScreen">
+      <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_1pxqjqps.json"  background="transparent"  speed="1" loop  autoplay >
+      </lottie-player>
+        <h1>
+          Welcome<span></span>
+        </h1>
+        <h3>Please select a chat to Start messaging.</h3>
+    </div>
+  </div>

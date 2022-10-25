@@ -1,0 +1,270 @@
+<ngx-spinner></ngx-spinner>
+<div class="col-12">
+    <div class="card card-outline card-primary">
+        <div class="card-body">
+            <form [formGroup]="reactiveForm" (ngSubmit)="onsubmit()">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="name" placeholder="product name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('name')?.touched && reactiveForm.get('name')?.errors?.['required']">
+                                name required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('name')?.errors?.['minlength'] && reactiveForm.get('name')?.touched && reactiveForm.get('name')?.invalid">
+                                name required at least 5 characters!
+                            </span>
+                        </div>
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="price" placeholder="price">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('price')?.touched && reactiveForm.get('price')?.errors?.['required']">
+                                email required!
+                            </span>
+                        </div>
+                        <div class="input-group my-1">
+                            <input type="file" class="form-control" multiple formControlName="avatar" id="avatarInput"
+                                placeholder="Avatar">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-image"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">
+                                avatar required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.errors?.['formatimage'] && reactiveForm.get('avatar')?.value!==''">
+                                incorrecly image formating jpg png jpeg!
+                            </span>
+                        </div>
+
+                        <select class="form-select" aria-label=".form-select-lg example" formControlName="category">
+                            <option [ngValue]="null" disabled>Choose category</option>
+                            <option value="{{data._id}}" *ngFor="let data of categorys">{{data.name}}</option>
+                        </select>
+
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('category')?.touched && reactiveForm.get('category')?.invalid">
+                                password required!
+                            </span>
+                        </div>
+                        <div class="my-3 mx-2">
+                            <div>
+                                <label for="exampleFormControlInput1" class="form-label">Supplement</label>
+                            </div>
+                            <div class="form-check" *ngFor="let data of supplements">
+                                <input class="form-check-input supplements" type="checkbox"
+                                    (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+                            <div>
+                                <span style="color: red" *ngIf="checkSupplement && touching">
+                                    at least one selected supplement!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-flex">
+                            <div class="my-1 mx-3">
+                                <div>
+                                    <label for="exampleFormControlInput1" class="form-label">Sleeping places</label>
+                                </div>
+                                <div class="form-check " *ngFor="let data of sleepingPlaces">
+                                    <input class="form-check-input sleepingPlaces" type="checkbox"
+                                        (change)="sleepingCheckbox($event)" id="{{data._id}}" value="{{data._id}}">
+                                    <label class="form-check-label" for="{{data._id}}">
+                                        {{data.bedroom}}<span class="px-1">/</span>{{data.bed}}
+                                    </label>
+                                </div>
+                                <div>
+                                    <span style="color: red" *ngIf="checkSleeping && touching">
+                                        at least one selected sleeping place!
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="my-1 mx-3">
+                                <div>
+                                    <label for="exampleFormControlInput1" class="form-label">Bathroom</label>
+                                </div>
+                                <div class="form-check " *ngFor="let data of bathRooms">
+                                    <input class="form-check-input bathrooms" type="checkbox" id="{{data._id}}"
+                                        value="{{data._id}}">
+                                    <label class="form-check-label" for="{{data._id}}">
+                                        {{data.name}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập hour opening"
+                                    formControlName="houropening" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('houropening')?.touched && reactiveForm.get('houropening')?.invalid">
+                                hour opening required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập hour ending"
+                                    formControlName="hourending" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('hourending')?.touched && reactiveForm.get('hourending')?.invalid">
+                                hour ending required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập địa chỉ sản phẩm của bạn"
+                                    formControlName="place" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('place')?.touched && reactiveForm.get('place')?.invalid">
+                                address required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập Longitude"
+                                    formControlName="Longitude" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('Longitude')?.touched && reactiveForm.get('Longitude')?.invalid">
+                                Longitude required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập Latitude"
+                                    formControlName="Latitude" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('Latitude')?.touched && reactiveForm.get('Latitude')?.invalid">
+                                Latitude required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" min="1" placeholder="nhập Limit person"
+                                    formControlName="limitPerson" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('limitPerson')?.touched && reactiveForm.get('limitPerson')?.invalid">
+                                Limit person required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="content"
+                                    placeholder="Leave a content here" id="floatingTextarea"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('content')?.touched && reactiveForm.get('content')?.invalid">
+                                content required!
+                            </span>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="legal" placeholder="Leave a legal here"
+                                    id="floatingTextarea"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('legal')?.touched && reactiveForm.get('legal')?.invalid">
+                                legal required!
+                            </span>
+                        </div>
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value=true>
+                            <label class="form-check-label" for="inlineRadio1">có</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value=false>
+                            <label class="form-check-label" for="inlineRadio2">không</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <div class=" col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.card -->
+</div>

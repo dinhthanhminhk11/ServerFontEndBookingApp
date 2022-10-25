@@ -1,0 +1,29 @@
+<div id="plist" class="people-list">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"
+          ><i class="fa fa-search"></i
+        ></span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+      />
+    </div>
+    <ul class="list-unstyled chat-list mt-2 mb-0">
+      <li *ngFor="let item of listUser" [ngClass]="item._id == a ? 'active':''"  (click)="selectUserHandler(item._id)" class="clearfix">
+        <img
+          src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"/>
+        <div class="about">
+          <div class="name">{{item.name}}</div>
+          <div class="status">
+            <i class="fa fa-circle online"></i> online
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="selectedUser">
+      <p>{{nameUser}}</p>
+    </div>
+  </div>
