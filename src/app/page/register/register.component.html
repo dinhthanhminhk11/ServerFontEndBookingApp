@@ -1,0 +1,157 @@
+<ng-particles [id]="id" [options]="options" [particlesInit]="particlesInit"></ng-particles>
+<ngx-spinner></ngx-spinner>
+
+<body class="hold-transition register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-body">
+        <p class="login-box-msg">Register a new membership</p>
+        <form [formGroup]="reactiveForm" (ngSubmit)="onsubmit()">
+          <div class="input-group my-2">
+            <input type="text" class="form-control" formControlName="name" placeholder="Full name">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('name')?.touched && reactiveForm.get('name')?.errors?.['required']">
+              name required!
+            </span>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('name')?.errors?.['minlength'] && reactiveForm.get('name')?.touched && reactiveForm.get('name')?.invalid">
+              name required at least 5 characters!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="text" class="form-control" formControlName="phone" name="phone" placeholder="Phone">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red;"
+              *ngIf="reactiveForm.get('phone')?.value == '' && reactiveForm.get('phone')?.invalid && reactiveForm.get('phone')?.touched">phone
+              required!</span>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('phone')?.errors?.['formatnumber']  && reactiveForm.get('phone')?.invalid && reactiveForm.get('phone')?.touched && reactiveForm.get('phone')?.value !== ''">
+              incorrectly formating!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('email')?.touched && reactiveForm.get('email')?.errors?.['required']">
+              email required!
+            </span>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('email')?.errors?.['email'] && reactiveForm.get('email')?.touched && reactiveForm.get('email')?.invalid">
+              incorrecly email formating!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="file" class="form-control" formControlName="avatar" id="avatarInput" placeholder="Avatar">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-image"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">
+              avatar required!
+            </span>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.errors?.['formatimage'] && reactiveForm.get('avatar')?.value!==''">
+              incorrecly image formating jpg png jpeg!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('password')?.touched && reactiveForm.get('password')?.invalid">
+              password required!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="text" class="form-control" formControlName="address" placeholder="Address">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-home"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red"
+              *ngIf="reactiveForm.get('address')?.touched && reactiveForm.get('address')?.invalid">
+              address required!
+            </span>
+          </div>
+          <div class="input-group my-2">
+            <input type="text" class="form-control" formControlName="idcard" placeholder="ID personal">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-id-card"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span style="color: red" *ngIf="reactiveForm.get('idcard')?.touched && reactiveForm.get('idcard')?.invalid">
+              idcard required!
+            </span>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="agreeTerms" formControlName="agree" name="terms" value="agree">
+                <label for="agreeTerms">
+                  I agree to the <a href="#">terms</a>
+                </label>
+              </div>
+              <span style="color: red" *ngIf="reactiveForm.get('agree')?.touched  && !reactiveForm.get('agree')?.value">
+                checked is required!
+              </span>
+            </div>
+            <!-- /.col -->
+            <div class=" col-4">
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <div class="social-auth-links text-center">
+          <a href="#" class="btn btn-block btn-primary">
+            <i class="fab fa-facebook mr-2"></i>
+            Sign up using Facebook
+          </a>
+          <a href="#" class="btn btn-block btn-danger">
+            <i class="fab fa-google-plus mr-2"></i>
+            Sign up using Google+
+          </a>
+        </div>
+
+        <a href="/" class="text-center">I already have a membership</a>
+      </div>
+    </div><!-- /.card -->
+  </div>
+</body>
