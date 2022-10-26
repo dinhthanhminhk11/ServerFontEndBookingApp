@@ -169,23 +169,6 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control" id="search" placeholder="nhập Longitude"
-                                    formControlName="Longitude" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-map"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('Longitude')?.touched && reactiveForm.get('Longitude')?.invalid">
-                                Longitude required!
-                            </span>
-                        </div>
-                        <div class="input-group my-2">
-                            <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Latitude"
                                     formControlName="Latitude" />
                                 <div class="input-group-append">
@@ -203,7 +186,25 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control" type="number" min="1" placeholder="nhập Limit person"
+                                <input class="form-control" id="search" placeholder="nhập Longitude"
+                                    formControlName="Longitude" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('Longitude')?.touched && reactiveForm.get('Longitude')?.invalid">
+                                Longitude required!
+                            </span>
+                        </div>
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" min="1" placeholder="nhập giới hạn người ở"
                                     formControlName="limitPerson" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -221,7 +222,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <textarea class="form-control" formControlName="content"
-                                    placeholder="Leave a content here" id="floatingTextarea"></textarea>
+                                    placeholder="Nhập mô tả về Bất động sản của bạn" id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -232,7 +233,7 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="legal" placeholder="Leave a legal here"
+                                <textarea class="form-control" formControlName="legal" placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiệt cần có"
                                     id="floatingTextarea"></textarea>
                             </div>
                         </div>

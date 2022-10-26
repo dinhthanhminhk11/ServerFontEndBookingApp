@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpservicesService {
 
   constructor(private httpRequests:HttpClient) { }
-  API = 'http://localhost:8000/api'
+  API = 'http://localhost:8080/api'
   createHost(dataHost:any):Observable<any[]>{
     return this.httpRequests.post<any[]>(`${this.API}/host/signup`,dataHost)
   }
