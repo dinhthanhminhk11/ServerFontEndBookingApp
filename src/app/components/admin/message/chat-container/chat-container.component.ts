@@ -20,54 +20,61 @@ export class ChatContainerComponent implements OnInit {
       showScreen:null
     }
   }
-  currentUser:any
-  roomId:any
+  public name:String=''
+  public currentUser:any
+  public roomId:any
   public messageText:String=''
   time=new Date(Date.now()).getHours() +":"+new Date(Date.now()).getMinutes()
   public server = io('http://localhost:8080')
   ngOnInit(): void {
-    this.MessageService.text.subscribe((data:any)=>{
-      if (Object.keys(data).length !== 0) {
-       this.selectedUser = data
-        this.roomId = this.selectedUser.User._id
-      }
-    })
-    const getAll = this.MessageService.getAll()
-    getAll.subscribe((data:any)=>{
-      const stoget =this.MessageService.getStorage()
-      if (stoget) {
-        this.currentUser = data.data.find((user:any) => user._id === stoget.id)
-      }
-    })
-
-    this.MessageService.onMessage().subscribe((data: { sender: string;message: string })=>{
-      const stoget =this.MessageService.getStorage()
-        if (data.sender == this.roomId) {          
-          this.selectedUser.message.push({
-              fromSelf: false, 
-              message: data.message,
-              sender:data.sender,
-              time_send:this.time
-            })
+      // this.mydiv.nativeElement.scrollTop=this.mydiv.nativeElement.scrollHeight  
+      this.MessageService.nameUser.subscribe((data)=>{
+        if (data) {
+          this.name = data
         }
-    })
+      })
+      this.MessageService.text.subscribe((data:any)=>{
+        if (Object.keys(data).length !== 0) {
+         this.selectedUser = data
+          this.roomId = this.selectedUser.User._id
+        }
+      })
+      const getAll = this.MessageService.getAll()
+      getAll.subscribe((data:any)=>{
+        const stoget =this.MessageService.getStorage()
+        if (stoget) {
+          this.currentUser = data.data.find((user:any) => user._id === stoget.id)
+        }
+      })
+      this.MessageService.onMessage().subscribe((data: { sender: string;message: string })=>{ // chat realtime
+        // this.MessageService.Notifications.next(data)
+        const stoget =this.MessageService.getStorage()
+          if (data.sender == this.roomId) {          
+            this.selectedUser.message.push({
+                fromSelf: false, 
+                message: data.message,
+                sender:data.sender,
+                time_send:this.time
+              })
+          }
+      })
   }
   sendMsg = ()=>{
-    this.MessageService.sendMessage({
+    this.MessageService.sendMessage({  // realtime chat
       user: this.currentUser.name,
       room: this.selectedUser.User._id,
       sender:this.currentUser._id,
       message: this.messageText,
       time_send:this.time
     })
-    const a =  this.MessageService.sendMessageDB({
-      "to":this.selectedUser.User._id,
-      "from":this.currentUser._id,
-      "message":this.messageText
-    })
-    a.subscribe(data=>{
-      console.log(data);
-    })
+    // const a =  this.MessageService.sendMessageDB({
+    //   "to":this.selectedUser.User._id,
+    //   "from":this.currentUser._id,
+    //   "message":this.messageText
+    // })
+    // a.subscribe(data=>{
+    //   console.log(data);
+    // })
     this.selectedUser.message.push({ fromSelf: true, message:this.messageText,sender:this.currentUser._id,time_send:this.time})
     this.messageText = ''
     // this.mydiv.nativeElement.scrollTop=this.mydiv.nativeElement.scrollHeight  
