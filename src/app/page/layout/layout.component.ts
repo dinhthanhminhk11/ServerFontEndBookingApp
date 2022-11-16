@@ -10,6 +10,9 @@ export class LayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    window.onunload = function(){
+      alert("The window is closing now!");
+    }
   }
 
 }

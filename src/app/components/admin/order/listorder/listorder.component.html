@@ -1,0 +1,42 @@
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">IdOder</th>
+            <th scope="col">Name Products</th>
+            <th scope="col">User</th>
+            <th scope="col">Price</th>
+            <th scope="col">Day</th>
+            <th scope="col">Status</th>
+            <th scope="col">Pay cash</th>
+            <th scope="col">Banking</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of dataOrderList">
+            <th>{{data.idOder}}</th>
+            <td>{{data.namePro}}</td>
+            <td>{{data.nameUser}}</td>
+            <td>{{data.price}}</td>
+            <td>{{data.day}}</td>
+            <td>{{data.status}}</td>
+            <td>{{data.cashMoney==true?data.cashMoney:''}}</td>
+            <td>{{data.banking==true?data.banking:''}}</td>
+            <td>
+                <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
+                    (click)="confirmHandler(data.idOder)">Confirm</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" [ngClass]="(data.seem == true) ? 'disabled':''"
+                    (click)="cancelHandler(data.idOder)">Cancel</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" spinner-border" role="status" *ngIf="loading==true">
+        <span class=" visually-hidden">Loading...</span>
+    </div>
+</div>
+<button (click)="createOrder()">addorder</button>

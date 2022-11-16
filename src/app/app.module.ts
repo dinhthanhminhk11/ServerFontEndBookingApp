@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { MessageComponent } from './components/admin/message/message.component';
 import { UserComponent } from './components/admin/user/user.component';
-import { StatisticalComponent } from './components/admin/statistical/statistical.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/admin/product/product.component';
@@ -23,7 +22,8 @@ import {NgToastModule} from 'ng-angular-popup'
 import { NgParticlesModule } from "ng-particles";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CreateComponent } from './components/admin/product/createproducts/create/create.component';
-import { ListComponent } from './components/admin/product/createproducts/list/list.component'
+import { ListComponent } from './components/admin/product/createproducts/list/list.component';
+import { ListorderComponent } from './components/admin/order/listorder/listorder.component'
 
 
 @NgModule({
@@ -32,7 +32,6 @@ import { ListComponent } from './components/admin/product/createproducts/list/li
     DashboardComponent,
     MessageComponent,
     UserComponent,
-    StatisticalComponent,
     HeaderComponent,
     FooterComponent,
     ProductComponent,
@@ -45,6 +44,7 @@ import { ListComponent } from './components/admin/product/createproducts/list/li
     ListComponent,
     RegisterComponent,
     CreateComponent,
+    ListorderComponent,
     
   ],
   imports: [

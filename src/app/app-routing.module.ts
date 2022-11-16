@@ -1,3 +1,4 @@
+import { ListorderComponent } from './components/admin/order/listorder/listorder.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -6,7 +7,6 @@ import { MessageComponent } from './components/admin/message/message.component';
 import { CreateComponent } from './components/admin/product/createproducts/create/create.component';
 import { ListComponent } from './components/admin/product/createproducts/list/list.component';
 import { ProductComponent } from './components/admin/product/product.component';
-import { StatisticalComponent } from './components/admin/statistical/statistical.component';
 import { LayoutComponent } from './page/layout/layout.component';
 import { LoginComponent } from './page/login/login.component';
 import { NotPageComponent } from './page/not-page/not-page.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
         {path:'createpro',component:CreateComponent}
       ]},
       {path:'Message',component:MessageComponent},
-      {path:'statistical',component:StatisticalComponent},
+      {path:'order',component:ListorderComponent},
     ]
   },
   { path: '', component:LoginComponent },
