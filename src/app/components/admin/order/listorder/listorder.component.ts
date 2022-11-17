@@ -23,7 +23,7 @@ export class ListorderComponent implements OnInit {
   cancelHandler(id:any){
     const argree = confirm('Trình xử lý nhấp chuột chỉ một lần, Bạn có chắc chắn thực hiện quy trình này không?')
     if(argree){
-      this.http.updateOrder({id:id,status:'cancel'}).subscribe((data:any)=>{
+      this.http.updateOrder({id:id,status:'Chủ đã huỷ'}).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.seem = data.data.seem
@@ -35,7 +35,7 @@ export class ListorderComponent implements OnInit {
   confirmHandler(id:any){
     const argree = confirm('Trình xử lý nhấp chuột chỉ một lần, Bạn có chắc chắn thực hiện quy trình này không?')
     if(argree){
-      this.http.updateOrder({id:id,status:'success'}).subscribe((data:any)=>{
+      this.http.updateOrder({id:id,status:'Đã xác nhận'}).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.seem = data.data.seem
