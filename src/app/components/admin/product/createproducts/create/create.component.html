@@ -57,17 +57,21 @@
                             </span>
                         </div>
 
+
+
+
                         <select class="form-select" aria-label=".form-select-lg example" formControlName="category">
-                            <option [ngValue]="null" disabled>Choose category</option>
+                            <option [ngValue]="null" disabled>Chọn thể loại</option>
                             <option value="{{data._id}}" *ngFor="let data of categorys">{{data.name}}</option>
                         </select>
 
                         <div>
                             <span style="color: red"
                                 *ngIf="reactiveForm.get('category')?.touched && reactiveForm.get('category')?.invalid">
-                                password required!
+                                Chưa chọn thể loại
                             </span>
                         </div>
+
                         <div class="my-3 mx-2">
                             <div>
                                 <label for="exampleFormControlInput1" class="form-label">Supplement</label>
@@ -118,7 +122,7 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control" id="search" placeholder="nhập hour opening"
+                                <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
                                     formControlName="houropening" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -135,7 +139,7 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control" id="search" placeholder="nhập hour ending"
+                                <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
                                     formControlName="hourending" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -231,9 +235,14 @@
                                 content required!
                             </span>
                         </div>
+
+
+
+
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="legal" placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiệt cần có"
+                                <textarea class="form-control" formControlName="legal"
+                                    placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiết cần có"
                                     id="floatingTextarea"></textarea>
                             </div>
                         </div>
@@ -243,6 +252,39 @@
                                 legal required!
                             </span>
                         </div>
+
+
+
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="startDate"
+                                    placeholder="Nhập ngày bắt đầu có thể mở cửa" id="floatingTextarea"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('startDate')?.touched && reactiveForm.get('legal')?.invalid">
+                                legal required!
+                            </span>
+                        </div>
+
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="endDate"
+                                    placeholder="Nhập ngày Kết thúc" id="floatingTextarea"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('endDate')?.touched && reactiveForm.get('legal')?.invalid">
+                                legal required!
+                            </span>
+                        </div>
+
+
+
                         <div>
                             <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
                         </div>

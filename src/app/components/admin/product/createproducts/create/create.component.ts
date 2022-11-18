@@ -48,6 +48,8 @@ export class CreateComponent implements OnInit {
         limitPerson: new FormControl(null,Validators.required),
         content: new FormControl(null,Validators.required),
         legal: new FormControl(null,Validators.required),
+        startDate:  new FormControl(null , Validators.required),
+        endDate:  new FormControl(null , Validators.required)
 
     })
     this.httpRequest.getSleepingPlaces().subscribe((data:any)=>{
@@ -161,7 +163,9 @@ export class CreateComponent implements OnInit {
               bathroom:this.subBathrooms,
               yte:this.yte,
               user:idHost,
-              sleepingPlaces:this.subSleepPlaces
+              sleepingPlaces:this.subSleepPlaces,
+              startDate:  this.reactiveForm.get('startDate')?.value,
+              endDate:  this.reactiveForm.get('endDate')?.value
             }
             this.httpRequest.createPro(dataAddForm).subscribe((data:any)=>{
               this.reactiveForm.reset()
