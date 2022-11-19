@@ -21,12 +21,13 @@ export class ListorderComponent implements OnInit {
     })
   }
   cancelHandler(id:any){
-    const argree = confirm('Trình xử lý nhấp chuột chỉ một lần, Bạn có chắc chắn thực hiện quy trình này không?')
+    const argree = prompt('Xin hãy cho biết lí do huỷ')
     if(argree){
-      this.http.updateOrder({id:id,status:'Chủ đã huỷ'}).subscribe((data:any)=>{
+      this.http.updateOrder({id:id,status:'Chủ đã huỷ' ,reasonHost : argree }).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.seem = data.data.seem
+        resault.reasonHost = data.data.reasonHost
         this.http.ListOrders.next({id:id})
         this.http.sendCancel(resault)
       })
@@ -59,5 +60,13 @@ export class ListorderComponent implements OnInit {
       return 0
     })
     this.http.sendOrder(data)
+  }
+
+  clickMethod() {
+    const data = prompt("Are you sure to delete")
+    if(data) {
+      const data1 = data
+      console.log("slkfjlsdkfjklsdfjsdklfjsdfkljsdfkl " + data1 );
+    }
   }
 }

@@ -1,14 +1,15 @@
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th scope="col">IdOder</th>
-            <th scope="col">Name Products</th>
-            <th scope="col">User</th>
-            <th scope="col">Price</th>
-            <th scope="col">Day</th>
-            <th scope="col">Status</th>
-            <th scope="col">Pay cash</th>
-            <th scope="col">Banking</th>
+            <th scope="col">Mã hoá đơn</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Người dùng</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số ngày</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Trả tiền sau</th>
+            <th scope="col">Đã chuyển khoản</th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -25,11 +26,15 @@
             <td>{{data.banking==true?data.banking:''}}</td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
-                    (click)="confirmHandler(data.idOder)">Confirm</button>
+                    (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>
             </td>
             <td>
                 <button type="button" class="btn btn-danger" [ngClass]="(data.seem == true) ? 'disabled':''"
-                    (click)="cancelHandler(data.idOder)">Cancel</button>
+                    (click)="cancelHandler(data.idOder)">Huỷ Phòng</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-success" (click)="clickMethod()"
+                    >Hoàn tất</button>
             </td>
         </tr>
     </tbody>
@@ -39,4 +44,4 @@
         <span class=" visually-hidden">Loading...</span>
     </div>
 </div>
-<button (click)="createOrder()">addorder</button>
+<!-- <button (click)="createOrder()">addorder</button> -->
