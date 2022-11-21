@@ -264,7 +264,7 @@
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('startDate')?.touched && reactiveForm.get('legal')?.invalid">
+                                *ngIf="reactiveForm.get('startDate')?.touched && reactiveForm.get('startDate')?.invalid">
                                 legal required!
                             </span>
                         </div>
@@ -278,11 +278,24 @@
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('endDate')?.touched && reactiveForm.get('legal')?.invalid">
+                                *ngIf="reactiveForm.get('endDate')?.touched && reactiveForm.get('endDate')?.invalid">
                                 legal required!
                             </span>
                         </div>
 
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="cancellatioDate"
+                                    placeholder="Nhập ngày Bắt đầu cho hủy phòng" id="floatingTextarea"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('cancellatioDate')?.touched && reactiveForm.get('cancellatioDate')?.invalid">
+                                legal required!
+                            </span>
+                        </div>
 
 
                         <div>
