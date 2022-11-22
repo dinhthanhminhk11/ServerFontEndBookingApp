@@ -9,6 +9,8 @@
             <th scope="col">Trạng thái</th>
             <th scope="col">Trả tiền sau</th>
             <th scope="col">Đã chuyển khoản</th>
+            <th scope="col">Đã Cọc phòng</th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -24,6 +26,7 @@
             <td>{{data.status}}</td>
             <td>{{data.cashMoney==true?data.cashMoney:''}}</td>
             <td>{{data.banking==true?data.banking:''}}</td>
+            <td>{{data.isBackingPercent==true?data.isBackingPercent:''}}</td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
                     (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>
@@ -35,6 +38,10 @@
             <td>
                 <button type="button" class="btn btn-success" (click)="clickMethod()"
                     >Hoàn tất</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="clickMethod()"
+                    >Xóa</button>
             </td>
         </tr>
     </tbody>
