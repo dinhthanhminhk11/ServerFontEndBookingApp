@@ -10,10 +10,9 @@
             <th scope="col">Trả tiền sau</th>
             <th scope="col">Đã chuyển khoản</th>
             <th scope="col">Đã Cọc phòng</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Xác nhận hoặc huỷ</th>
+            <th scope="col">Yêu cầu huỷ</th>
+            <th scope="col">Trả phòng</th>
         </tr>
     </thead>
     <tbody>
@@ -30,18 +29,18 @@
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
                     (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger" [ngClass]="(data.seem == true) ? 'disabled':''"
+                    <button type="button" class="btn btn-danger" [ngClass]="(data.seem == true) ? 'disabled':''"
                     (click)="cancelHandler(data.idOder)">Huỷ Phòng</button>
             </td>
+          
             <td>
-                <button type="button" class="btn btn-success" (click)="clickMethod()"
-                    >Hoàn tất</button>
+                <button type="button" class="btn btn-danger"  [ngClass]=" (data.status ==='Khách huỷ' && data.isCancellationDate == true || data.status ==='Đang chờ' || data.status ==='Chủ đã huỷ' || data.status ==='Đã xác nhận') ? 'disabled' :''"
+                (click)="confirmCancelAccess(data.idOder) ">Chấp nhận huỷ</button>
             </td>
             <td>
-                <button type="button" class="btn btn-danger" (click)="clickMethod()"
-                    >Xóa</button>
+                <button type="button" class="btn btn-success"
+                    >Hoàn tất</button>
+                
             </td>
         </tr>
     </tbody>

@@ -62,8 +62,16 @@ export class HttpservicesService {
   updateOrder(data: any): Observable<any[]> {
     return this.httpRequests.patch<any[]>(`${this.API}/order/${data.id}`, data)
   }
+
+  updateOrderCancel(data: any): Observable<any[]> {
+    return this.httpRequests.patch<any[]>(`${this.API}/ordercancel/${data.id}`, data)
+  }
+
   listOrderNotSeem(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/oderseem`, data)
+  }
+  updateStatusAccessCancel(data: any) : Observable<any[]> {
+    return this.httpRequests.patch<any[]>(`${this.API}/updateStatusAccessCancel/${data.id}`, data)
   }
   connectIpHost() {
     let returnUrl = localStorage.getItem('host');
@@ -82,8 +90,13 @@ export class HttpservicesService {
   sendConfirm(data: any) {
     this.socket.emit('confirmOrder', data)
   }
+
   sendCancel(data: any) {
     this.socket.emit('cancelOrder', data)
+  }
+
+  sendConfirmCancelAccess(data: any) {
+    this.socket.emit('ConfirmCancelAccess', data)
   }
   createOrderFake(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/addorder`, data)

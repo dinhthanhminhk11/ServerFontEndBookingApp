@@ -23,7 +23,7 @@ export class ListorderComponent implements OnInit {
   cancelHandler(id:any){
     const argree = prompt('Xin hãy cho biết lí do huỷ')
     if(argree){
-      this.http.updateOrder({id:id,status:'Chủ đã huỷ' ,reasonHost : argree }).subscribe((data:any)=>{
+      this.http.updateOrderCancel({id:id,status:'Chủ đã huỷ' ,reasonHost : argree }).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.seem = data.data.seem
@@ -68,5 +68,18 @@ export class ListorderComponent implements OnInit {
       const data1 = data
       console.log("slkfjlsdkfjklsdfjsdklfjsdfkljsdfkl " + data1 );
     }
+  }
+
+  confirmCancelAccess(id:any){
+    const argree = confirm('Bạn có chắc muốn huỷ bỏ phòng này?')
+    if(argree){
+      this.http.updateStatusAccessCancel({id:id}).subscribe((data:any)=>{
+        const resault = this.dataOrderList.find((item)=>item.idOder == id)
+        resault.status = data.data.status
+        resault.isCancellationDate = data.data.isCancellationDate
+        this.http.ListOrders.next({id:id})
+        this.http.sendConfirmCancelAccess(resault)
+      })
+    } 
   }
 }
