@@ -101,4 +101,20 @@ export class HttpservicesService {
   createOrderFake(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/addorder`, data)
   }
+  senNotificationAccess(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senNotificationAccess`, data)
+  }
+
+  senNotificationCancel(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senNotificationCancel`, data)
+  }
+
+  senNotificationRequestCancel(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senNotificationRequestCancel`, data)
+  }
+
+  senMailnAccess(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senMailnAccess`, data)
+  }
+
 }

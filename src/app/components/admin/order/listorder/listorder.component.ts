@@ -31,6 +31,8 @@ export class ListorderComponent implements OnInit {
         this.http.ListOrders.next({id:id})
         this.http.sendCancel(resault)
       })
+
+    this.http.senNotificationCancel({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
     }
   }
   confirmHandler(id:any){
@@ -43,6 +45,9 @@ export class ListorderComponent implements OnInit {
         this.http.ListOrders.next({id:id})
         this.http.sendConfirm(resault)
       })
+
+      this.http.senNotificationAccess({id:id}).subscribe((data:any)=>{})
+      this.http.senMailnAccess({id:id}).subscribe((data:any)=>{})
     } 
   }
   createOrder(){
@@ -62,12 +67,8 @@ export class ListorderComponent implements OnInit {
     this.http.sendOrder(data)
   }
 
-  clickMethod() {
-    const data = prompt("Are you sure to delete")
-    if(data) {
-      const data1 = data
-      console.log("slkfjlsdkfjklsdfjsdklfjsdfkljsdfkl " + data1 );
-    }
+  clickMethod(id:any) {
+    
   }
 
   confirmCancelAccess(id:any){
@@ -80,6 +81,8 @@ export class ListorderComponent implements OnInit {
         this.http.ListOrders.next({id:id})
         this.http.sendConfirmCancelAccess(resault)
       })
+
+      this.http.senNotificationRequestCancel({id:id}).subscribe((data:any)=>{})
     } 
   }
 }
