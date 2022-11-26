@@ -68,7 +68,15 @@ export class ListorderComponent implements OnInit {
   }
 
   clickMethod(id:any) {
-    
+    const argree = confirm('Xác nhận lần cuối trả phòng')
+    if(argree){
+      this.http.checkedOutRoom({id:id}).subscribe((data:any)=>{
+        const resault = this.dataOrderList.find((item)=>item.idOder == id)
+        resault.status = data.data.status
+        resault.isCancellationDate = data.data.isCancellationDate
+        this.http.ListOrders.next({id:id})
+      })
+    }
   }
 
   confirmCancelAccess(id:any){

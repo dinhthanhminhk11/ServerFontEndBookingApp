@@ -117,4 +117,8 @@ export class HttpservicesService {
     return this.httpRequests.post<any[]>(`${this.API}/senMailnAccess`, data)
   }
 
+  checkedOutRoom(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/checkedOutRoom`, data)
+  }
+
 }
