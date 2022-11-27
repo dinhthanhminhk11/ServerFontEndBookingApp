@@ -46,7 +46,7 @@ export class ListorderComponent implements OnInit {
         this.http.ListOrders.next({id:id})
         this.http.sendConfirm(resault)
       })
-
+      window.location.reload();
       this.http.senNotificationAccess({id:id}).subscribe((data:any)=>{})
       this.http.senMailnAccess({id:id}).subscribe((data:any)=>{})
     } 
