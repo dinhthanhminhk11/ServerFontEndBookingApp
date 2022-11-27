@@ -33,6 +33,7 @@ export class ListorderComponent implements OnInit {
       })
 
     this.http.senNotificationCancel({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
+    this.http.sendMailComfirmCancelByHostPost({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
     }
   }
   confirmHandler(id:any){
@@ -73,9 +74,10 @@ export class ListorderComponent implements OnInit {
       this.http.checkedOutRoom({id:id}).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
-        resault.isCancellationDate = data.data.isCancellationDate
         this.http.ListOrders.next({id:id})
       })
+      this.http.senNotificationRequestCheckOut({id:id}).subscribe((data:any)=>{})
+      this.http.senMailCheckOut({id:id}).subscribe((data:any)=>{})
     }
   }
 
@@ -91,6 +93,7 @@ export class ListorderComponent implements OnInit {
       })
 
       this.http.senNotificationRequestCancel({id:id}).subscribe((data:any)=>{})
+      this.http.sendMailComfirmCancelByUserPost({id:id}).subscribe((data:any)=>{})
     } 
   }
 }

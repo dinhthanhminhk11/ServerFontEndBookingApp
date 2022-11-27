@@ -113,12 +113,28 @@ export class HttpservicesService {
     return this.httpRequests.post<any[]>(`${this.API}/senNotificationRequestCancel`, data)
   }
 
+  senNotificationRequestCheckOut(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senNotificationRequestCheckOut`, data)
+  }
+
   senMailnAccess(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/senMailnAccess`, data)
   }
 
   checkedOutRoom(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/checkedOutRoom`, data)
+  }
+
+  senMailCheckOut(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/senMailCheckOut`, data)
+  }
+
+  sendMailComfirmCancelByUserPost(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/sendMailComfirmCancelByUserPost`, data)
+  }
+
+  sendMailComfirmCancelByHostPost(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/sendMailComfirmCancelByHostPost`, data)
   }
 
 }
