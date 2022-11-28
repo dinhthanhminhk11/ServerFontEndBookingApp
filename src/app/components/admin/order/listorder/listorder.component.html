@@ -38,7 +38,7 @@
                 (click)="confirmCancelAccess(data.idOder) ">Chấp nhận huỷ</button>
             </td>
             <td>
-                <button type="button" class="btn btn-success" [ngClass]=" (data.seem==false || data.status ==='Đã trả phòng'|| data.status ==='Chủ đã huỷ') ? 'disabled' :''"
+                <button type="button" class="btn btn-success" [ngClass]=" (data.seem==false || data.status ==='Đã trả phòng'|| data.status ==='Chủ đã huỷ'|| data.status ==='Khách huỷ') ? 'disabled' :''"
                 (click)="clickMethod(data.idOder)"  >Hoàn tất</button>
                 
             </td>

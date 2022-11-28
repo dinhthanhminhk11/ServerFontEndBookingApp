@@ -137,4 +137,21 @@ export class HttpservicesService {
     return this.httpRequests.post<any[]>(`${this.API}/sendMailComfirmCancelByHostPost`, data)
   }
 
+  createNotiAccess(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/createNotiAccess`, data)
+  }
+
+
+  createNotiCancel(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/createNotiCancel`, data)
+  }
+
+  createNotiAccessCancel(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/createNotiAccessCancel`, data)
+  }
+
+  createNotiSuccess(data: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/createNotiSuccess`, data)
+  }
+
 }

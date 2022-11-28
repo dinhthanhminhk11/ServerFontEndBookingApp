@@ -34,6 +34,7 @@ export class ListorderComponent implements OnInit {
 
     this.http.senNotificationCancel({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
     this.http.sendMailComfirmCancelByHostPost({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
+    this.http.createNotiCancel({id:id}).subscribe((data:any)=>{})
     }
   }
   confirmHandler(id:any){
@@ -49,6 +50,7 @@ export class ListorderComponent implements OnInit {
       window.location.reload();
       this.http.senNotificationAccess({id:id}).subscribe((data:any)=>{})
       this.http.senMailnAccess({id:id}).subscribe((data:any)=>{})
+      this.http.createNotiAccess({id:id}).subscribe((data:any)=>{})
     } 
   }
   createOrder(){
@@ -78,6 +80,7 @@ export class ListorderComponent implements OnInit {
       })
       this.http.senNotificationRequestCheckOut({id:id}).subscribe((data:any)=>{})
       this.http.senMailCheckOut({id:id}).subscribe((data:any)=>{})
+      this.http.createNotiSuccess({id:id}).subscribe((data:any)=>{})
     }
   }
 
@@ -94,6 +97,7 @@ export class ListorderComponent implements OnInit {
 
       this.http.senNotificationRequestCancel({id:id}).subscribe((data:any)=>{})
       this.http.sendMailComfirmCancelByUserPost({id:id}).subscribe((data:any)=>{})
+      this.http.createNotiAccessCancel({id:id}).subscribe((data:any)=>{})
     } 
   }
 }
