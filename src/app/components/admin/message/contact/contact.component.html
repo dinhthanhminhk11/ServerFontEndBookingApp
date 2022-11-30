@@ -12,7 +12,7 @@
       />
     </div> -->
     <ul class="list-unstyled chat-list mt-2 mb-0">
-      <li *ngFor="let item of listUser" [ngClass]="item._id == selectedIdUser ? 'active':''"  (click)="selectUserHandler(item._id)" class="clearfix">
+      <li *ngFor="let item of filterUser " [ngClass]="item._id == selectedIdUser ? 'active':''"  (click)="selectUserHandler(item._id)" class="clearfix">
         <img
           src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"/>
         <div class="about">

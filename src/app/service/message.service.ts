@@ -8,8 +8,9 @@ import { io, Socket } from 'socket.io-client';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MessageService {
-  API = 'http://localhost:8080/api/Message/'
+  API = 'http://localhost:8080/api/Message'
   public url = 'http://localhost:8080/';
   private socket: Socket;
   constructor(private httpRequests:HttpClient) {

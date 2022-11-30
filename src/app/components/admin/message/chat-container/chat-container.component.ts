@@ -40,6 +40,7 @@ export class ChatContainerComponent implements OnInit {
         }
       })
       const getAll = this.MessageService.getAll()
+      
       getAll.subscribe((data:any)=>{
         const stoget =this.MessageService.getStorage()
         if (stoget) {
@@ -67,14 +68,14 @@ export class ChatContainerComponent implements OnInit {
       message: this.messageText,
       time_send:this.time
     })
-    // const a =  this.MessageService.sendMessageDB({
-    //   "to":this.selectedUser.User._id,
-    //   "from":this.currentUser._id,
-    //   "message":this.messageText
-    // })
-    // a.subscribe(data=>{
-    //   console.log(data);
-    // })
+    const a =  this.MessageService.sendMessageDB({
+      "to":this.selectedUser.User._id,
+      "from":this.currentUser._id,
+      "message":this.messageText
+    })
+    a.subscribe(data=>{
+      console.log(data);
+    })
     this.selectedUser.message.push({ fromSelf: true, message:this.messageText,sender:this.currentUser._id,time_send:this.time})
     this.messageText = ''
     // this.mydiv.nativeElement.scrollTop=this.mydiv.nativeElement.scrollHeight  

@@ -32,6 +32,10 @@ export class HttpservicesService {
     formData.append("upload_preset", CLOUDINARY_PRESET)
     return this.httpRequests.post<any[]>(CLOUDINARY_API, formData)
   }
+
+  getHouseByHost(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getProductsHost/${data.id}`)
+  }
   getSupplement(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/suplements`)
   }
@@ -152,6 +156,10 @@ export class HttpservicesService {
 
   createNotiSuccess(data: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/createNotiSuccess`, data)
+  }
+
+  deleteHouseId(data: any): Observable<any[]>{
+    return this.httpRequests.delete<any[]>(`${this.API}/deleteProduct/${data.id}`)
   }
 
 }

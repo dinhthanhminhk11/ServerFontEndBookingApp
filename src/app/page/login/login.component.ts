@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         setTimeout(()=>{
           this.spiner.hide()
           localStorage.setItem('host', JSON.stringify(data))
-          this.router.navigate(['/admin'])
+          this.router.navigate(['/admin/products'])
         },1000)
       },error=>{
         setTimeout(()=>{

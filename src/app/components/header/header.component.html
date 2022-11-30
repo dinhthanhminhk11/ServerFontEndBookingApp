@@ -115,7 +115,7 @@
     <a href="" class="brand-link">
       <img src="https://picsum.photos/200" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
         style="opacity: 0.8" />
-      <span class="brand-text font-weight-light">welcome Admin</span>
+      <span class="brand-text font-weight-light">Xin chào</span>
     </a>
 
     <!-- Sidebar -->
@@ -148,29 +148,11 @@
           <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a routerLink="/admin" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a routerLink="/admin/products" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                House
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/admin/Message" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Message
-                <span class="right badge badge-danger">New</span>
+                Trang chủ
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
@@ -178,8 +160,24 @@
             <a routerLink="/admin/order" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Orders
-                <span class="right badge badge-danger">New</span>
+                Hóa đơn
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin/Message" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Tin nhắn
+              </p>
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a routerLink="/static" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Thống kê
               </p>
             </a>
           </li>
@@ -187,16 +185,16 @@
             <a routerLink="/Feedback" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Feedback
-                <span class="right badge badge-danger">New</span>
+                Đánh giá
               </p>
             </a>
           </li>
-          <li class="nav-item" (click)="logout()">
-            <a class="nav-link">
+
+          <li class="nav-item">
+            <a routerLink="/" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Logout
+                Đăng xuất
               </p>
             </a>
           </li>

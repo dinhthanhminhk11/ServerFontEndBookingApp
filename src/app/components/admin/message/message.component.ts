@@ -12,9 +12,12 @@ export class MessageComponent implements OnInit {
   currentUser:any
   ngOnInit(): void {
     const getAll = this.MessageService.getAll()
+    
     getAll.subscribe((data:any)=>{
       const stoget =this.MessageService.getStorage()
+      console.log("data", data);
       if (stoget) {
+      
         this.currentUser = data.data.find((user:any) => user._id === stoget.id)
         if (this.currentUser) {
           this.MessageService.joinRoom(this.currentUser._id)
