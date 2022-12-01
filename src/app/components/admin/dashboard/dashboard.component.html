@@ -2,30 +2,29 @@
   <div class="col-lg-3 col-6">
     <!-- small box -->
     <div class="small-box bg-info">
-      <div class="inner">
-        <h3>150</h3>
-
-        <p>New Orders</p>
+      <div class="inner" >
+        <h3>{{count.data}}</h3>
+        <p>Tổng số lượt đặt phòng</p>
       </div>
       <div class="icon">
         <i class="ion ion-bag"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a routerLink="/admin/order" class="nav-link small-box-footer" >Chi tiết<i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
   <div class="col-lg-3 col-6">
     <!-- small box -->
     <div class="small-box bg-success">
-      <div class="inner">
-        <h3>53<sup style="font-size: 20px">%</sup></h3>
+      <div class="inner" >
+        <h3>{{countFinish.data}}<sup style="font-size: 20px"></sup></h3>
 
-        <p>Bounce Rate</p>
+        <p>Đã hoàn thành</p>
       </div>
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a routerLink="/admin/order" class="nav-link small-box-footer" >Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -33,14 +32,14 @@
     <!-- small box -->
     <div class="small-box bg-warning">
       <div class="inner">
-        <h3>44</h3>
+        <h3>{{countProcess.data}}</h3>
 
-        <p>User Registrations</p>
+        <p>Đang chờ</p>
       </div>
       <div class="icon">
         <i class="ion ion-person-add"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a routerLink="/admin/order" class="nav-link small-box-footer" >Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -48,17 +47,26 @@
     <!-- small box -->
     <div class="small-box bg-danger">
       <div class="inner">
-        <h3>65</h3>
-
-        <p>Unique Visitors</p>
+        <h3>{{countFail.data}}</h3>
+        <p>Đã hủy</p>
       </div>
       <div class="icon">
         <i class="ion ion-pie-graph"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a routerLink="/admin/order" class="nav-link small-box-footer" >Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
+  <div class="col-12">
+    <!-- small box -->
+    <div class="small-box bg-light">
+      <div class="inner">
+        <p class="text-center" style="font-size: 20px ;">Lượt đặt phòng hôm nay: {{countFail.data}}</p>
+      </div>
+      <a routerLink="/admin/order" class="nav-link small-box-footer" >Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
 </div>
 <!-- /.row -->
 <!-- Main row -->

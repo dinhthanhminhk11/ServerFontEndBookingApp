@@ -35,6 +35,4 @@ export class ListComponent implements OnInit {
   refresh(): void {
     window.location.reload();
   }
-
-  
 }

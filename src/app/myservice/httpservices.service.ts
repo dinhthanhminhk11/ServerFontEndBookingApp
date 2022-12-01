@@ -162,4 +162,20 @@ export class HttpservicesService {
     return this.httpRequests.delete<any[]>(`${this.API}/deleteProduct/${data.id}`)
   }
 
+  getCountOrder(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalOrder/${data.IdHost}`)
+  }
+  getCountOrderProcess(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalOrderProcess/${data.IdHost}`)
+  }
+  getCountOrderFinish(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalOrderFinish/${data.IdHost}`)
+  }
+  getCountOrderFail(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalOrderFail/${data.IdHost}`)
+  }
+  getTimeOrder(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getTimeOrder/${data.IdHost}`)
+  }
+
 }

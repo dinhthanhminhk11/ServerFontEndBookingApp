@@ -31,7 +31,7 @@ export class MessageService {
     return storage ? JSON.parse(storage) : [];
   }
   getMessage():Observable<any>{
-    return this.httpRequests.get<any>(`${this.API}getmsg`)
+    return this.httpRequests.get<any>(`${this.API}/getmsg`)
   }
   onMessage(): Observable<any>{
     return new Observable<{user: string, message: string}>(observer => {

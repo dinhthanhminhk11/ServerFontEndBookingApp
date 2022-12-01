@@ -11,6 +11,7 @@ import { LayoutComponent } from './page/layout/layout.component';
 import { LoginComponent } from './page/login/login.component';
 import { NotPageComponent } from './page/not-page/not-page.component';
 import { RegisterComponent } from './page/register/register.component';
+import { StatisticalComponent } from './components/admin/statistical/statistical.component';
 
 const routes: Routes = [
   {
@@ -22,11 +23,13 @@ const routes: Routes = [
       ]},
       {path:'Message',component:MessageComponent},
       {path:'order',component:ListorderComponent},
+      { path: 'static', component:StatisticalComponent},
     ]
   },
   { path: '', component:LoginComponent },
   { path: 'register', component:RegisterComponent },
   { path: '**', component:NotPageComponent },
+  
 ];
 
 @NgModule({
