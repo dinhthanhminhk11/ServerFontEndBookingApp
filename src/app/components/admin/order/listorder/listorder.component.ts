@@ -13,6 +13,7 @@ export class ListorderComponent implements OnInit {
   dataOrderList!:any[]
   loading:boolean=true
   idHost:any
+
   ngOnInit(): void {
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
     this.http.listOrder({idHost:this.idHost}).subscribe((Listdata:any)=>{

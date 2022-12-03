@@ -23,7 +23,7 @@ const routes: Routes = [
       ]},
       {path:'Message',component:MessageComponent},
       {path:'order',component:ListorderComponent},
-      { path: 'static', component:StatisticalComponent},
+      { path: 'admin', component:StatisticalComponent},
     ]
   },
   { path: '', component:LoginComponent },

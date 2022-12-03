@@ -178,4 +178,21 @@ export class HttpservicesService {
     return this.httpRequests.get<any[]>(`${this.API}/getTimeOrder/${data.IdHost}`)
   }
 
+  getPriceWaiting(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceWaiting/${data.IdHost}`)
+  }
+  getPriceDay(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceDayOrder/${data.IdHost}`)
+  }
+  getPriceWeek(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceWeekOrder/${data.IdHost}`)
+  }
+  getPriceMonth(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceMonthOrder/${data.IdHost}`)
+  }
+  getPriceYear(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceYearOrder/${data.IdHost}`)
+  }
+
+
 }
