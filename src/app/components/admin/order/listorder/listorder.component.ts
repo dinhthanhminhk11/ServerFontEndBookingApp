@@ -100,5 +100,9 @@ export class ListorderComponent implements OnInit {
       this.http.sendMailComfirmCancelByUserPost({id:id}).subscribe((data:any)=>{})
       this.http.createNotiAccessCancel({id:id}).subscribe((data:any)=>{})
     } 
+    this.refresh()
+  }
+  refresh(): void {
+    window.location.reload();
   }
 }

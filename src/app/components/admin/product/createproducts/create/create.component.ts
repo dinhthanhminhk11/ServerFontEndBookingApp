@@ -148,6 +148,7 @@ export class CreateComponent implements OnInit {
           })
           setTimeout(()=>{
             const dataAddForm = {
+              // _id:"638e232147cc38d6f69657c7",
               name:this.reactiveForm.get('name')?.value,
               images:this.listAvatars,
               price:this.reactiveForm.get('price')?.value,

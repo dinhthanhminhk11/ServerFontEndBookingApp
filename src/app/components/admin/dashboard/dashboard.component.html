@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-lg-3 col-6">
     <!-- small box -->
@@ -75,13 +74,11 @@
 
 
 
-
-
-
   <div class="col-xl-6 col-md-12 mb-4">
     <div class="card border-left-primary shadow h-100">
       <div class="card-header d-flex flex-row align-items-center justify-content-between">
-        <h6 style="margin-top: 10px" class="font-weight-bold text-primary text-uppercase ">Doanh thu từ đặt phòng {{checkDay}}</h6>
+        <h6 style="margin-top: 10px" class="font-weight-bold text-primary text-uppercase ">Doanh thu từ đặt phòng
+          {{checkDay}}</h6>
         <div class="dropdown no-arrow" style="margin-left: 200px;">
           <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
             data-bs-target="#dropdownRevenueDay">
@@ -90,6 +87,8 @@
           <div class="dropdown-menu shadow animated-fade-in" aria-labelledby="dropdownRevenueDay"
             style="max-height: 180px; overflow: auto;">
             <div class="dropdown-header bg-light" style="position: sticky; top: 0;">
+              <a (click)="getValue(priceLastDay,'hôm qua')" class="dropdown-item">Hôm qua</a>
+              <div class="dropdown-divider"></div>
               <a (click)="getValue(priceDay,'hôm nay')" class="dropdown-item">Hôm nay</a>
               <div class="dropdown-divider"></div>
               <a (click)="getValue(priceWeek, 'tuần này')" class="dropdown-item">Tuần này</a>
@@ -130,3 +129,33 @@
       </div>
     </div>
   </div>
+
+  <div class="col-xl-12 col-md-12 mb-4">
+    <div class="card border-left-primary shadow h-100">
+      <div class="card-header d-flex flex-row align-items-center justify-content-between">
+        <h6 style="margin-top: 10px;" class="col-4 font-weight-bold text-primary text-uppercase">Doanh thu theo khoảng
+          ngày</h6>
+        <div class="row mt-2 col-5" ng-if="saleReturn.saleType == 0">
+          <div class="col-md-6" style="margin: 25;">
+            <input #startDate type="date" class="form-control" id="startdate">
+          </div> 
+          <div class="col-md-6">
+            <input #endDate type="date" class="form-control" id="enddate" >
+          </div>
+        </div>
+        <div style="margin-top: 10px;"><button style="width: 100px;" class="btn btn-primary" (click)="getStartDate()">Tìm</button></div>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              {{priceSearch}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      const x = document.getElementById("startdate").value;
+  </script>

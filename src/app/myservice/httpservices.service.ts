@@ -60,6 +60,9 @@ export class HttpservicesService {
   createPro(dataPro: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/addProduct`, dataPro)
   }
+  updatePro(dataPro: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/updateProduct`, dataPro)
+  }
   listOrder(dataHost: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/order`, dataHost)
   }
@@ -184,6 +187,9 @@ export class HttpservicesService {
   getPriceDay(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceDayOrder/${data.IdHost}`)
   }
+  getPriceLastDay(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceDayLastOrder/${data.IdHost}`)
+  }
   getPriceWeek(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceWeekOrder/${data.IdHost}`)
   }
@@ -194,5 +200,8 @@ export class HttpservicesService {
     return this.httpRequests.get<any[]>(`${this.API}/getPriceYearOrder/${data.IdHost}`)
   }
 
+  getPriceSearch(IdHost: any,startDay: any, endDay: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceOrder/${IdHost}&${startDay}&${endDay}`)
+  }
 
 }
