@@ -23,7 +23,8 @@ import { NgParticlesModule } from "ng-particles";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CreateComponent } from './components/admin/product/createproducts/create/create.component';
 import { ListComponent } from './components/admin/product/createproducts/list/list.component';
-import { ListorderComponent } from './components/admin/order/listorder/listorder.component'
+import { ListorderComponent } from './components/admin/order/listorder/listorder.component';
+import { UpdateComponent } from './update/update.component'
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ListorderComponent } from './components/admin/order/listorder/listorder
     RegisterComponent,
     CreateComponent,
     ListorderComponent,
+    UpdateComponent,
     
   ],
   imports: [

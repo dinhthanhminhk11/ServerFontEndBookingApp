@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
   dataHouseList!: any[]
   load: boolean = true
   idHost: any
+  idHouse: any
 
   ngOnInit(): void {
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
@@ -34,5 +35,9 @@ export class ListComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+  }
+
+  clickIdHouse(idHouse: any){
+    this.http.changeIdHouse(idHouse)
   }
 }

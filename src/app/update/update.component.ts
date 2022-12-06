@@ -1,73 +1,84 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpservicesService } from 'src/app/myservice/httpservices.service';
-import { Component, OnInit} from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from "ngx-spinner";
-import {FormGroup,FormControl,Validators} from '@angular/forms'
-import {NgToastService} from 'ng-angular-popup'
-import { from } from 'rxjs';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class CreateComponent implements OnInit {
-  constructor(private httpRequest:HttpservicesService,private toastr:NgToastService,private spiner:NgxSpinnerService) { }
+export class UpdateComponent implements OnInit {
+
+  constructor(private httpRequest: HttpservicesService, private toastr: NgToastService, private spiner: NgxSpinnerService) { }
   isApiLoaded = false;
   options: any = {
     componentRestrictions: { country: 'IN' }
   }
-  touching:boolean=false
-  checkSleeping:boolean=true
-  checkSupplement:boolean=true
-  checkBathroom:boolean=true
+  touching: boolean = false
+  checkSleeping: boolean = true
+  checkSupplement: boolean = true
+  checkBathroom: boolean = true
   // proAddress: string = ''
   // proLatitude: string = ''
   // proLongitude: string = ''
-  supplements!:any
-  sleepingPlaces!:any
-  bathRooms:any
-  yte:boolean=false
-  subSupplements:any[]=[]
-  subSleepPlaces:any[]=[]
-  subBathrooms:any[]=[]
-  categorys!:any
-  listAvatars:any[]=[]
-  reactiveForm!:FormGroup
+  supplements!: any
+  sleepingPlaces!: any
+  bathRooms: any
+  yte: boolean = false
+  subSupplements: any[] = []
+  subSleepPlaces: any[] = []
+  subBathrooms: any[] = []
+  categorys!: any
+  listAvatars: any[] = []
+  reactiveForm!: FormGroup
+  idHouse:any
+  productId:any
+
   ngOnInit(): void {
-      this.reactiveForm = new FormGroup({
-        name: new FormControl('',[Validators.required,Validators.minLength(5)]),
-        price: new FormControl(null,Validators.required),
-        avatar: new FormControl(null,[Validators.required,this.checkFormatImage]),
-        category: new FormControl(null,Validators.required),
-        houropening: new FormControl(null,Validators.required),
-        hourending: new FormControl(null,Validators.required),
-        place: new FormControl(null,Validators.required),
-        Longitude: new FormControl(null,Validators.required),
-        Latitude: new FormControl(null,Validators.required),
-        limitPerson: new FormControl(null,Validators.required),
-        content: new FormControl(null,Validators.required),
-        legal: new FormControl(null,Validators.required),
-        startDate:  new FormControl(null , Validators.required),
-        endDate:  new FormControl(null , Validators.required),
-        cancellatioDate:  new FormControl(null , Validators.required),
+    this.httpRequest.currentID.subscribe(data => {
+        this.idHouse = data
+    })
+    this.httpRequest.getProductId({id: this.idHouse}).subscribe((data: any)=>{
+      this.productId=data 
+    })
+    this.reactiveForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      price: new FormControl(null, Validators.required),
+      avatar: new FormControl(null, [Validators.required, this.checkFormatImage]),
+      category: new FormControl(null, Validators.required),
+      houropening: new FormControl(null, Validators.required),
+      hourending: new FormControl(null, Validators.required),
+      place: new FormControl(null, Validators.required),
+      Longitude: new FormControl(null, Validators.required),
+      Latitude: new FormControl(null, Validators.required),
+      limitPerson: new FormControl(null, Validators.required),
+      content: new FormControl(null, Validators.required),
+      legal: new FormControl(null, Validators.required),
+      startDate: new FormControl(null, Validators.required),
+      endDate: new FormControl(null, Validators.required),
+      cancellatioDate: new FormControl(null, Validators.required),
 
     })
-    this.httpRequest.getSleepingPlaces().subscribe((data:any)=>{
+    this.httpRequest.getSleepingPlaces().subscribe((data: any) => {
       this.sleepingPlaces = data.dataSleeping
     })
 
-    this.httpRequest.getSupplement().subscribe((data:any)=>{
+    this.httpRequest.getSupplement().subscribe((data: any) => {
       this.supplements = data.dataSupplements
     })
-    this.httpRequest.getCategorys().subscribe((data:any)=>{
+    this.httpRequest.getCategorys().subscribe((data: any) => {
       this.categorys = data
     })
-    this.httpRequest.getBathrooms().subscribe((data:any)=>{
+    this.httpRequest.getBathrooms().subscribe((data: any) => {
       this.bathRooms = data.databaths
     })
   }
+
   onsubmit(){
+    console.log(this.idHouse);
+    
     this.touching=true
     let totalSupplements = 0
     let totalSleepings = 0
@@ -148,6 +159,7 @@ export class CreateComponent implements OnInit {
           })
           setTimeout(()=>{
             const dataAddForm = {
+              _id:this.idHouse,
               name:this.reactiveForm.get('name')?.value,
               images:this.listAvatars,
               price:this.reactiveForm.get('price')?.value,
@@ -169,7 +181,7 @@ export class CreateComponent implements OnInit {
               endDate:  this.reactiveForm.get('endDate')?.value,
               cancellatioDate:  this.reactiveForm.get('cancellatioDate')?.value,
             }
-            this.httpRequest.createPro(dataAddForm).subscribe((data:any)=>{
+            this.httpRequest.updatePro(dataAddForm).subscribe((data:any)=>{
               this.reactiveForm.reset()
               sleepingPlaces.forEach((items:any)=>{
                   items.checked = false
@@ -184,11 +196,12 @@ export class CreateComponent implements OnInit {
                 items.checked = false
               })
               this.spiner.hide()
-              this.toastr.success({detail:"Success",summary:"thêm thành công!.",duration:5000,})
+              this.toastr.success({detail:"Success",summary:"update thành công!.",duration:4000,})
             })
           },7000)
         }
   }
+
   checkFormatImage(control:FormControl){
     const imageFomater =/(\.jpg|\.jpeg|\.png)$/i;
     if(!imageFomater.test(control.value)){

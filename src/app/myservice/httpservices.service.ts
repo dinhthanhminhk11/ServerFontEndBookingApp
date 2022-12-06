@@ -9,6 +9,9 @@ import { BehaviorSubject } from 'rxjs';
 export class HttpservicesService {
   private socket: Socket;
   public ListOrders = new BehaviorSubject<any>({})
+  private IdHouse= new BehaviorSubject<string>('');
+  currentID = this.IdHouse.asObservable();
+
   public url = 'http://localhost:8080'
   constructor(private httpRequests: HttpClient) {
     this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] })
@@ -202,6 +205,14 @@ export class HttpservicesService {
 
   getPriceSearch(IdHost: any,startDay: any, endDay: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceOrder/${IdHost}&${startDay}&${endDay}`)
+  }
+
+  changeIdHouse(IdHouse: string) {
+    this.IdHouse.next(IdHouse)
+  }
+
+  getProductId(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/listProduct/${data.id}`)
   }
 
 }

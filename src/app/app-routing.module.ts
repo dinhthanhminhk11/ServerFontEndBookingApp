@@ -12,6 +12,7 @@ import { LoginComponent } from './page/login/login.component';
 import { NotPageComponent } from './page/not-page/not-page.component';
 import { RegisterComponent } from './page/register/register.component';
 import { StatisticalComponent } from './components/admin/statistical/statistical.component';
+import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
       {path:'',component:DashboardComponent},
       {path:'products',component:ProductComponent,children:[
         {path:'',component:ListComponent},
-        {path:'createpro',component:CreateComponent}
+        {path:'createpro',component:CreateComponent},
+        {path:'updatepro',component:UpdateComponent}
       ]},
       {path:'Message',component:MessageComponent},
       {path:'order',component:ListorderComponent},
