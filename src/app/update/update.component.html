@@ -1,4 +1,3 @@
-
 <ngx-spinner></ngx-spinner>
 <div class="col-12">
     <div class="card card-outline card-primary">
@@ -7,7 +6,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Tên nhà của bạn" [(ngModel)]="productId.name" >
+                            <input type="text" class="form-control" formControlName="name"
+                                placeholder="Nhập tên nhà của bạn" [ngModel]="productId.name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -25,7 +25,8 @@
                             </span>
                         </div>
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="price" placeholder="giá" [(ngModel)]="productId.price">
+                            <input type="text" class="form-control" formControlName="price" placeholder="Giá"
+                                [ngModel]="productId.price">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -61,7 +62,8 @@
 
 
 
-                        <select class="form-select" aria-label=".form-select-lg example" formControlName="category">
+                        <select class="form-select"
+                        [ngModel]="productId.category._id" aria-label=".form-select-lg example" formControlName="category">
                             <option [ngValue]="null" disabled>Chọn thể loại</option>
                             <option value="{{data._id}}" *ngFor="let data of categorys">{{data.name}}</option>
                         </select>
@@ -79,7 +81,8 @@
                             </div>
                             <div class="form-check" *ngFor="let data of supplements">
                                 <input class="form-check-input supplements" type="checkbox"
-                                    (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                    [checked]="isCheckSupplement(data.name)" (change)="supplementCheckbox($event)"
+                                    id="{{data.name}}" value="{{data._id}}">
                                 <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
                             </div>
                             <div>
@@ -97,7 +100,8 @@
                                 </div>
                                 <div class="form-check " *ngFor="let data of sleepingPlaces">
                                     <input class="form-check-input sleepingPlaces" type="checkbox"
-                                        (change)="sleepingCheckbox($event)" id="{{data._id}}" value="{{data._id}}">
+                                        [checked]="isCheckSleepBed(data.bedroom)" (change)="sleepingCheckbox($event)"
+                                        id="{{data._id}}" value="{{data._id}}">
                                     <label class="form-check-label" for="{{data._id}}">
                                         {{data.bedroom}}<span class="px-1">/</span>{{data.bed}}
                                     </label>
@@ -113,7 +117,9 @@
                                     <label for="exampleFormControlInput1" class="form-label">Bathroom</label>
                                 </div>
                                 <div class="form-check " *ngFor="let data of bathRooms">
-                                    <input class="form-check-input bathrooms" type="checkbox" id="{{data._id}}"
+                                    <input class="form-check-input bathrooms"
+                                    [checked]="isCheckBadroom(data.name)"
+                                     type="checkbox" id="{{data._id}}"
                                         value="{{data._id}}">
                                     <label class="form-check-label" for="{{data._id}}">
                                         {{data.name}}
@@ -124,7 +130,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
-                                    formControlName="houropening" [(ngModel)]="productId.opening"/>
+                                    [ngModel]="productId.opening" formControlName="houropening" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -141,7 +147,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
-                                    formControlName="hourending" [(ngModel)]="productId.ending"/>
+                                    [ngModel]="productId.ending" formControlName="hourending" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -158,7 +164,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập địa chỉ nhà của bạn"
-                                    formControlName="place" [(ngModel)]="productId.nameLocation"/>
+                                    [ngModel]="productId.nameLocation" formControlName="place" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -175,7 +181,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Latitude"
-                                    formControlName="Latitude" [(ngModel)]="productId.location.coordinates[1]"/>
+                                    [ngModel]="productId.location.coordinates[1]" formControlName="Latitude" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -192,7 +198,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Longitude"
-                                    formControlName="Longitude" [(ngModel)]="productId.location.coordinates[0]"/>
+                                    [ngModel]="productId.location.coordinates[0]" formControlName="Longitude" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -210,7 +216,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" type="number" min="1" placeholder="nhập giới hạn người ở"
-                                    formControlName="limitPerson" [(ngModel)]="productId.limitPerson"/>
+                                    [ngModel]="productId.limitPerson" formControlName="limitPerson" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -226,9 +232,8 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="content"
-                                    placeholder="Nhập mô tả về Bất động sản của bạn" id="floatingTextarea"
-                                    [(ngModel)]="productId.content"></textarea>
+                                <textarea class="form-control" [ngModel]="productId.content" formControlName="content"
+                                    placeholder="Nhập mô tả về Bất động sản của bạn" id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -243,9 +248,9 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="legal"
+                                <textarea class="form-control" [ngModel]="productId.legal" formControlName="legal"
                                     placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiết cần có"
-                                    id="floatingTextarea" [(ngModel)]="productId.legal"></textarea>
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -260,9 +265,9 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="startDate"
-                                    placeholder="Nhập ngày bắt đầu có thể mở cửa" id="floatingTextarea"
-                                    [(ngModel)]="productId.startDate"></textarea>
+                                <textarea class="form-control" [ngModel]="productId.startDate"
+                                    formControlName="startDate" placeholder="Nhập ngày bắt đầu có thể mở cửa"
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -275,9 +280,8 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="endDate"
-                                    placeholder="Nhập ngày Kết thúc" id="floatingTextarea"
-                                    [(ngModel)]="productId.endDate"></textarea>
+                                <textarea class="form-control" [ngModel]="productId.endDate" formControlName="endDate"
+                                    placeholder="Nhập ngày Kết thúc" id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -290,9 +294,9 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="cancellatioDate"
-                                    placeholder="Nhập ngày Bắt đầu cho hủy phòng" id="floatingTextarea"
-                                    [(ngModel)]="productId.cancellatioDate"></textarea>
+                                <textarea class="form-control" [ngModel]="productId.cancellatioDate"
+                                    formControlName="cancellatioDate" placeholder="Nhập ngày Bắt đầu cho hủy phòng"
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -307,11 +311,14 @@
                             <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio1">
+                            <input class="form-check-input yte" type="radio"
+                            [checked]="checkYte(productId.yte)" name="inlineRadioOptions" id="inlineRadio1"
+                                value=true>
                             <label class="form-check-label" for="inlineRadio1">có</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            <input class="form-check-input yte" type="radio"
+                            [checked]="checkYte(productId.yte)" name="inlineRadioOptions" id="inlineRadio2"
                                 value=false>
                             <label class="form-check-label" for="inlineRadio2">không</label>
                         </div>

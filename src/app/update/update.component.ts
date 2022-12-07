@@ -33,15 +33,15 @@ export class UpdateComponent implements OnInit {
   categorys!: any
   listAvatars: any[] = []
   reactiveForm!: FormGroup
-  idHouse:any
-  productId:any
+  idHouse: any
+  productId: any
 
   ngOnInit(): void {
     this.httpRequest.currentID.subscribe(data => {
-        this.idHouse = data
+      this.idHouse = data
     })
-    this.httpRequest.getProductId({id: this.idHouse}).subscribe((data: any)=>{
-      this.productId=data 
+    this.httpRequest.getProductId({ id: this.idHouse }).subscribe((data: any) => {
+      this.productId = data
     })
     this.reactiveForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -76,10 +76,10 @@ export class UpdateComponent implements OnInit {
     })
   }
 
-  onsubmit(){
+  onsubmit() {
     console.log(this.idHouse);
-    
-    this.touching=true
+
+    this.touching = true
     let totalSupplements = 0
     let totalSleepings = 0
     let totalBathrooms = 0
@@ -87,138 +87,175 @@ export class UpdateComponent implements OnInit {
     const supplements = document.querySelectorAll('.supplements')
     const bathrooms = document.querySelectorAll('.bathrooms')
     const yte = document.querySelectorAll('.yte')
-    const avatars:any = document.querySelector('#avatarInput')
-    let idHost:any = localStorage.getItem('host')
-        idHost = JSON.parse(idHost).id
-    sleepingPlaces.forEach((items:any)=>{
-      if(items.checked){
-        totalSleepings+=1
+    const avatars: any = document.querySelector('#avatarInput')
+    let idHost: any = localStorage.getItem('host')
+    idHost = JSON.parse(idHost).id
+    sleepingPlaces.forEach((items: any) => {
+      if (items.checked) {
+        totalSleepings += 1
       }
     })
-    supplements.forEach((items:any)=>{
-      if(items.checked){
-        totalSupplements+=1
+    supplements.forEach((items: any) => {
+      if (items.checked) {
+        totalSupplements += 1
       }
     })
-    bathrooms.forEach((items:any)=>{
-      if(items.checked){
-        totalBathrooms+=1
+    bathrooms.forEach((items: any) => {
+      if (items.checked) {
+        totalBathrooms += 1
       }
     })
-    yte.forEach((items:any)=>{
-      if(items.checked){
+    yte.forEach((items: any) => {
+      if (items.checked) {
         this.yte = items.value
       }
     })
 
-    if(totalSleepings==0 && totalSupplements==0){
-      this.checkSleeping=true
-      this.checkSupplement=true
-    }if (totalSleepings>0 && totalSupplements>0) {
-      this.checkSleeping=false
-      this.checkSupplement=false
-    } 
-    else{
-      if(totalSupplements==0){
-        this.checkSupplement=true
-      }else{
-        this.checkSleeping=true
+    if (totalSleepings == 0 && totalSupplements == 0) {
+      this.checkSleeping = true
+      this.checkSupplement = true
+    } if (totalSleepings > 0 && totalSupplements > 0) {
+      this.checkSleeping = false
+      this.checkSupplement = false
+    }
+    else {
+      if (totalSupplements == 0) {
+        this.checkSupplement = true
+      } else {
+        this.checkSleeping = true
       }
     }
-    if(!this.reactiveForm.valid || avatars.files.length==0 || totalSleepings==0 || totalSupplements==0 || totalBathrooms==0){
-      this.toastr.error({detail:"Notice",summary:"Check!, Your Information is missing.",duration:6000,})
-    }else{
-          this.spiner.show(undefined,{
-            type:'ball-scale-multiple',
+    if (!this.reactiveForm.valid || avatars.files.length == 0 || totalSleepings == 0 || totalSupplements == 0 || totalBathrooms == 0) {
+      this.toastr.error({ detail: "Notice", summary: "Check!, Your Information is missing.", duration: 6000, })
+    } else {
+      this.spiner.show(undefined, {
+        type: 'ball-scale-multiple',
+      })
+      for (let initialIndex = 0; initialIndex < avatars.files.length; initialIndex++) {
+        this.httpRequest.sendImage(avatars.files[initialIndex]).subscribe((data: any) => {
+          this.listAvatars.push(data.url)
+        })
+      }
+      sleepingPlaces.forEach((item: any) => {
+        if (item.checked) {
+          this.httpRequest.getSleepById({ id: item.value }).subscribe((data: any) => {
+            this.subSleepPlaces.push(data.dataSleeping)
           })
-          for(let initialIndex=0;initialIndex<avatars.files.length;initialIndex++){
-            this.httpRequest.sendImage(avatars.files[initialIndex]).subscribe((data:any)=>{
-               this.listAvatars.push(data.url)
-            })
-          }
-          sleepingPlaces.forEach((item:any)=>{
-            if(item.checked){
-            this.httpRequest.getSleepById({id:item.value}).subscribe((data:any)=>{
-              this.subSleepPlaces.push(data.dataSleeping)
-            })
-            }
-          })
-          supplements.forEach((item:any)=>{
-            if(item.checked){
-            this.httpRequest.getSupplements({id:item.value}).subscribe((data:any)=>{
-                this.subSupplements.push(data.dataSupplements)
-            })
-            }
-          })
-          bathrooms.forEach((item:any)=>{
-            if(item.checked){
-            this.httpRequest.getBathroomById({id:item.value}).subscribe((data:any)=>{
-                this.subBathrooms.push(data.dataBaths)
-            })
-            }
-          })
-          setTimeout(()=>{
-            const dataAddForm = {
-              _id:this.idHouse,
-              name:this.reactiveForm.get('name')?.value,
-              images:this.listAvatars,
-              price:this.reactiveForm.get('price')?.value,
-              supplement:this.subSupplements,
-              nameLocation:this.reactiveForm.get('place')?.value,
-              longitude:this.reactiveForm.get('Longitude')?.value,
-              latitude:this.reactiveForm.get('Latitude')?.value,
-              category:this.reactiveForm.get('category')?.value,
-              opening:this.reactiveForm.get('houropening')?.value,
-              ending:this.reactiveForm.get('hourending')?.value,
-              limitPerson:this.reactiveForm.get('limitPerson')?.value,
-              content:this.reactiveForm.get('content')?.value,
-              legal:this.reactiveForm.get('legal')?.value,
-              bathroom:this.subBathrooms,
-              yte:this.yte,
-              user:idHost,
-              sleepingPlaces:this.subSleepPlaces,
-              startDate:  this.reactiveForm.get('startDate')?.value,
-              endDate:  this.reactiveForm.get('endDate')?.value,
-              cancellatioDate:  this.reactiveForm.get('cancellatioDate')?.value,
-            }
-            this.httpRequest.updatePro(dataAddForm).subscribe((data:any)=>{
-              this.reactiveForm.reset()
-              sleepingPlaces.forEach((items:any)=>{
-                  items.checked = false
-              })
-              supplements.forEach((items:any)=>{
-                items.checked = false
-              })
-              bathrooms.forEach((items:any)=>{
-                items.checked = false
-              })
-              yte.forEach((items:any)=>{
-                items.checked = false
-              })
-              this.spiner.hide()
-              this.toastr.success({detail:"Success",summary:"update thành công!.",duration:4000,})
-            })
-          },7000)
         }
+      })
+      supplements.forEach((item: any) => {
+        if (item.checked) {
+          this.httpRequest.getSupplements({ id: item.value }).subscribe((data: any) => {
+            this.subSupplements.push(data.dataSupplements)
+          })
+        }
+      })
+      bathrooms.forEach((item: any) => {
+        if (item.checked) {
+          this.httpRequest.getBathroomById({ id: item.value }).subscribe((data: any) => {
+            this.subBathrooms.push(data.dataBaths)
+          })
+        }
+      })
+      setTimeout(() => {
+        const dataAddForm = {
+          _id: this.idHouse,
+          name: this.reactiveForm.get('name')?.value,
+          images: this.listAvatars,
+          price: this.reactiveForm.get('price')?.value,
+          supplement: this.subSupplements,
+          nameLocation: this.reactiveForm.get('place')?.value,
+          longitude: this.reactiveForm.get('Longitude')?.value,
+          latitude: this.reactiveForm.get('Latitude')?.value,
+          category: this.reactiveForm.get('category')?.value,
+          opening: this.reactiveForm.get('houropening')?.value,
+          ending: this.reactiveForm.get('hourending')?.value,
+          limitPerson: this.reactiveForm.get('limitPerson')?.value,
+          content: this.reactiveForm.get('content')?.value,
+          legal: this.reactiveForm.get('legal')?.value,
+          bathroom: this.subBathrooms,
+          yte: this.yte,
+          user: idHost,
+          sleepingPlaces: this.subSleepPlaces,
+          startDate: this.reactiveForm.get('startDate')?.value,
+          endDate: this.reactiveForm.get('endDate')?.value,
+          cancellatioDate: this.reactiveForm.get('cancellatioDate')?.value,
+        }
+        this.httpRequest.updatePro(dataAddForm).subscribe((data: any) => {
+          this.reactiveForm.reset()
+          sleepingPlaces.forEach((items: any) => {
+            items.checked = false
+          })
+          supplements.forEach((items: any) => {
+            items.checked = false
+          })
+          bathrooms.forEach((items: any) => {
+            items.checked = false
+          })
+          yte.forEach((items: any) => {
+            items.checked = false
+          })
+          this.spiner.hide()
+          this.toastr.success({ detail: "Success", summary: "update thành công!.", duration: 4000, })
+        })
+      }, 7000)
+    }
   }
 
-  checkFormatImage(control:FormControl){
-    const imageFomater =/(\.jpg|\.jpeg|\.png)$/i;
-    if(!imageFomater.test(control.value)){
+  checkFormatImage(control: FormControl) {
+    const imageFomater = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!imageFomater.test(control.value)) {
       return {
-       formatimage:true
+        formatimage: true
       }
     }
     return null
   }
-  sleepingCheckbox(checkBox:any){
-    if(checkBox.target.checked){
-      this.checkSleeping=false
+  sleepingCheckbox(checkBox: any) {
+    if (checkBox.target.checked) {
+      this.checkSleeping = false
     }
   }
-  supplementCheckbox(checkBox:any){
-    if(checkBox.target.checked){
-      this.checkSupplement=false
+  supplementCheckbox(checkBox: any) {
+    if (checkBox.target.checked) {
+      this.checkSupplement = false
     }
+  }
+
+
+  isCheckSupplement(data: any): Boolean {
+    for(let i =0 ; i<(this.productId.supplement).length ; i++){
+      if(data == this.productId.supplement[i].name){
+        return true
+      }
+    }
+    return false
+  }
+
+  isCheckSleepBed(data: any): Boolean {
+    for(let i =0 ; i<(this.productId.sleepingPlaces).length ; i++){
+      if(data == this.productId.sleepingPlaces[i].bedroom){
+        return true
+      }
+    }
+    return false
+  }
+  isCheckBadroom(data: any): Boolean {
+    for(let i =0 ; i<(this.productId.bathrooms).length ; i++){
+      if(data == this.productId.bathrooms[i].name){
+        return true
+      }
+    }
+    return false
+  }
+
+  checkYte(data: any): Boolean{
+    if(data == true){
+      return true
+    }
+    if(data == false){
+      return true
+    }
+    return false
   }
 }
