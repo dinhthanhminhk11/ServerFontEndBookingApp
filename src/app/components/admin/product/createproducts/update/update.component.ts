@@ -198,7 +198,7 @@ export class UpdateComponent implements OnInit {
           this.spiner.hide()
           this.toastr.success({ detail: "Success", summary: "update thành công!.", duration: 4000, })
         })
-      }, 7000)
+      }, 5000)
     }
   }
 
@@ -258,4 +258,6 @@ export class UpdateComponent implements OnInit {
     }
     return false
   }
+
+  
 }

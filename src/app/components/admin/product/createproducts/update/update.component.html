@@ -48,6 +48,11 @@
                                 </div>
                             </div>
                         </div>
+                       <div class="row">
+                        <div class="col-3" *ngFor="let data of productId.images">
+                            <img src="{{data}}" alt="" class="rounded" width="70px" height="70px" style="margin: 10px;">
+                        </div>
+                       </div>
                         <div>
                             <span style="color: red"
                                 *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">

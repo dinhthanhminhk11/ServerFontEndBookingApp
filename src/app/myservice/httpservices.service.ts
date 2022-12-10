@@ -215,4 +215,13 @@ export class HttpservicesService {
     return this.httpRequests.get<any[]>(`${this.API}/listProduct/${data.id}`)
   }
 
+
+  getFeedbackId(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/listFeedBack/${data.idHouse}`)
+  }
+
+  getUserId(data: any): Observable<any>{
+    return this.httpRequests.get<any>(`${this.API}/getUser/${data.idUser}`)
+  }
+
 }

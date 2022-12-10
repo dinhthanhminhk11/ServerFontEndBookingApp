@@ -1,0 +1,45 @@
+<div *ngFor="let data of product">
+    <div class="small-box bg-light">
+        <div class="inner">
+            <div class="font-weight-bold text-primary text-uppercase d-flex justify-content-center">{{data.name}}</div>
+            <button type="button" class="btn btn-light col-12" (click)="onClickHidden(data)">
+                Xem đánh giá
+            </button>
+        </div>
+        <div >
+            <div class="card card-body" [hidden]="!isCollapse[data._id]" >
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Khách Hàng</th>
+                            <th scope="col">Sao</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Nội Dung</th>
+                            <th scope="col">Thời Gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data1 of showFeedBAck">
+                            <td>{{data1.name}}</td>
+                            <td>{{data1.sao}}</td>
+                            <td>{{data1.email}}</td>
+                            <td>{{data1.textUser}}</td>
+                            <td>{{data1.time | date:'HH:mm dd-MM-yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" spinner-border" role="status" *ngIf="load==true">
+        <span class=" visually-hidden">Loading...</span>
+    </div>
+</div>

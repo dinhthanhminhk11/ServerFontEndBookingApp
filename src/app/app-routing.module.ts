@@ -12,26 +12,30 @@ import { LoginComponent } from './page/login/login.component';
 import { NotPageComponent } from './page/not-page/not-page.component';
 import { RegisterComponent } from './page/register/register.component';
 import { StatisticalComponent } from './components/admin/statistical/statistical.component';
-import { UpdateComponent } from './update/update.component';
+import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {
-    path:'admin',component:LayoutComponent,canActivate:[AuthGuard],children:[
-      {path:'',component:DashboardComponent},
-      {path:'products',component:ProductComponent,children:[
-        {path:'',component:ListComponent},
-        {path:'createpro',component:CreateComponent},
-        {path:'updatepro',component:UpdateComponent}
-      ]},
-      {path:'Message',component:MessageComponent},
-      {path:'order',component:ListorderComponent},
-      { path: 'admin', component:StatisticalComponent},
+    path: 'admin', component: LayoutComponent, canActivate: [AuthGuard], children: [
+      { path: '', component: DashboardComponent },
+      {
+        path: 'products', component: ProductComponent, children: [
+          { path: '', component: ListComponent },
+          { path: 'createpro', component: CreateComponent },
+          { path: 'updatepro', component: UpdateComponent },
+        ]
+      },
+      { path: 'feedback', component: FeedbackComponent },
+      { path: 'Message', component: MessageComponent },
+      { path: 'order', component: ListorderComponent },
+      { path: 'admin', component: StatisticalComponent },
     ]
   },
-  { path: '', component:LoginComponent },
-  { path: 'register', component:RegisterComponent },
-  { path: '**', component:NotPageComponent },
-  
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', component: NotPageComponent },
+
 ];
 
 @NgModule({

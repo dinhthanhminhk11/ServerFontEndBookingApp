@@ -24,7 +24,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { CreateComponent } from './components/admin/product/createproducts/create/create.component';
 import { ListComponent } from './components/admin/product/createproducts/list/list.component';
 import { ListorderComponent } from './components/admin/order/listorder/listorder.component';
-import { UpdateComponent } from './update/update.component'
+import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
+import { FeedbackComponent } from './feedback/feedback.component'
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { UpdateComponent } from './update/update.component'
     CreateComponent,
     ListorderComponent,
     UpdateComponent,
+    FeedbackComponent,
     
   ],
   imports: [
