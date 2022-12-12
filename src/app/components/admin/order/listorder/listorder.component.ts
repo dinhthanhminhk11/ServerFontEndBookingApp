@@ -95,7 +95,7 @@ export class ListorderComponent implements OnInit {
         this.http.ListOrders.next({id:id})
         this.http.sendConfirmCancelAccess(resault)
       })
-
+      window.location.reload();
       this.http.senNotificationRequestCancel({id:id}).subscribe((data:any)=>{})
       this.http.sendMailComfirmCancelByUserPost({id:id}).subscribe((data:any)=>{})
       this.http.createNotiAccessCancel({id:id}).subscribe((data:any)=>{})
