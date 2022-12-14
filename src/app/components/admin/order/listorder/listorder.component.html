@@ -7,12 +7,11 @@
             <th scope="col">Giá</th>
             <th scope="col">Số ngày</th>
             <th scope="col">Trạng thái</th>
-            <th scope="col">Trả tiền sau</th>
-            <th scope="col">Đã chuyển khoản</th>
-            <th scope="col">Đã Cọc phòng</th>
+            <th scope="col">Thanh toán</th>
             <th scope="col">Xác nhận hoặc huỷ</th>
             <th scope="col">Yêu cầu huỷ</th>
             <th scope="col">Trả phòng</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -22,10 +21,8 @@
             <td>{{data.nameUser}}</td>
             <td>{{data.price}}</td>
             <td>{{data.day}}</td>
-            <td>{{data.status}}</td>
-            <td>{{data.cashMoney==true?data.cashMoney:''}}</td>
-            <td>{{data.banking==true?data.banking:''}}</td>
-            <td>{{data.isBackingPercent==true?data.isBackingPercent:''}}</td>
+            <td>{{data.status=="Khách huỷ"?data.status+': '+data.reasonUser:data.status}}</td>
+            <td>{{data.cashMoney?'tiền mặt':data.banking?'Đã chuyển khoản':data.isBackingPercent?'Đã cọc':'' }}</td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
                     (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>

@@ -102,6 +102,9 @@ export class ListorderComponent implements OnInit {
     } 
     this.refresh()
   }
+
+  
+
   refresh(): void {
     window.location.reload();
   }
