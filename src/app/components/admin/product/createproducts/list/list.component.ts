@@ -17,7 +17,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
-    this.http.getHouseByHost({ id: this.idHost }).subscribe((data: any) => {
+    // this.http.getHouseByHost({ id: this.idHost }).subscribe((data: any) => {
+    //   this.dataHouseList = data.datapros
+    //   this.load = false
+    // })
+    this.http.getHotelByHost({ id: this.idHost }).subscribe((data: any) => {
       this.dataHouseList = data.datapros
       this.load = false
     })

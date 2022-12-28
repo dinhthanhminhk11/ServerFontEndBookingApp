@@ -39,6 +39,9 @@ export class HttpservicesService {
   getHouseByHost(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getProductsHost/${data.id}`)
   }
+  getHotelByHost(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getHotelHost/${data.id}`)
+  }
   getSupplement(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/suplements`)
   }

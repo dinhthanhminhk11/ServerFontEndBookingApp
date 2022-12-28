@@ -4,7 +4,7 @@
             <th scope="col">#ID</th>
             <th scope="col">Tên nhà</th>
             <th scope="col">Địa chỉ</th>
-            <th scope="col">Giá</th>
+            <!-- <th scope="col">Giá</th> -->
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -13,8 +13,8 @@
         <tr *ngFor="let data of dataHouseList">
             <td>#</td>
             <td>{{data.name}}</td>
-            <td>{{data.nameLocation}}</td>
-            <td>{{data.price}}</td>
+            <td>{{data.sonha}} - {{data.huyen}} - {{data.tinh}}</td>
+            <!-- <td>{{data.price}}</td> -->
             <td><a href="" routerLink="/admin/products/updatepro"><button type="button"
                         class="btn btn-info" (click)="clickIdHouse(data._id)">Sửa</button></a></td>
             <td><button type="button" class="btn btn-danger" (click)="deleteHouse(data._id)">xóa</button>
