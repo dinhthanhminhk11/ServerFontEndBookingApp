@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   deleteHouse(idHouse: any) {
     const argree = confirm('bạn có chắc chắn muốn xóa không?')
     if (argree) {
-      this.http.deleteHouseId({ id: idHouse }).subscribe((data: any) => {
+      this.http.deleteHotelId({ id: idHouse }).subscribe((data: any) => {
         this.refresh()
         alert("xóa thành công")
       })

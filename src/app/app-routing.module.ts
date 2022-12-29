@@ -14,6 +14,7 @@ import { RegisterComponent } from './page/register/register.component';
 import { StatisticalComponent } from './components/admin/statistical/statistical.component';
 import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { CreateHotelComponent } from './components/admin/product/create-hotel/create-hotel.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
       {
         path: 'products', component: ProductComponent, children: [
           { path: '', component: ListComponent },
-          { path: 'createpro', component: CreateComponent },
+          { path: 'createpro', component: CreateHotelComponent },
           { path: 'updatepro', component: UpdateComponent },
         ]
       },

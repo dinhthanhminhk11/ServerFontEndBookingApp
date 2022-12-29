@@ -25,7 +25,8 @@ import { CreateComponent } from './components/admin/product/createproducts/creat
 import { ListComponent } from './components/admin/product/createproducts/list/list.component';
 import { ListorderComponent } from './components/admin/order/listorder/listorder.component';
 import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
-import { FeedbackComponent } from './feedback/feedback.component'
+import { FeedbackComponent } from './feedback/feedback.component';
+import { CreateHotelComponent } from './components/admin/product/create-hotel/create-hotel.component'
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { FeedbackComponent } from './feedback/feedback.component'
     ListorderComponent,
     UpdateComponent,
     FeedbackComponent,
+    CreateHotelComponent,
     
   ],
   imports: [

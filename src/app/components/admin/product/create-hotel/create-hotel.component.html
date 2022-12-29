@@ -6,7 +6,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên nhà của bạn">
+                            <input type="text" class="form-control" formControlName="name"
+                                placeholder="Nhập tên khách sạn của bạn">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -23,22 +24,69 @@
                                 name required at least 5 characters!
                             </span>
                         </div>
-
-                
+                        <label for="exampleFormControlInput1" class="form-label">Địa điểm</label>
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="price" placeholder="Giá">
+                            <input type="text" class="form-control" formControlName="tinh"
+                                placeholder="Nhập tỉnh/thành phố">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
+                                    <span class="fas fa-product-hunt"></span>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('price')?.touched && reactiveForm.get('price')?.errors?.['required']">
-                                email required!
+                                *ngIf="reactiveForm.get('tinh')?.touched && reactiveForm.get('tinh')?.errors?.['required']">
+                                is not empty
                             </span>
                         </div>
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="huyen"
+                                placeholder="Nhập quận/huyện">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('huyen')?.touched && reactiveForm.get('huyen')?.errors?.['required']">
+                                is not empty
+                            </span>
+                        </div>
+
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="xa"
+                                placeholder="Nhập xã/phường">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('xa')?.touched && reactiveForm.get('xa')?.errors?.['required']">
+                                is not empty
+                            </span>
+                        </div>
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="sonha"
+                                placeholder="Nhập số nhà/ tên đường">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('sonha')?.touched && reactiveForm.get('sonha')?.errors?.['required']">
+                                is not empty
+                            </span>
+                        </div>
+
 
 
                         <div class="input-group my-1">
@@ -61,27 +109,12 @@
                             </span>
                         </div>
 
-
-
-
-                        <select class="form-select" aria-label=".form-select-lg example" formControlName="category">
-                            <option [ngValue]="null" disabled>Chọn thể loại</option>
-                            <option value="{{data._id}}" *ngFor="let data of categorys">{{data.name}}</option>
-                        </select>
-
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('category')?.touched && reactiveForm.get('category')?.invalid">
-                                Chưa chọn thể loại
-                            </span>
-                        </div>
-
                         <div class="my-3 mx-2">
                             <div>
-                                <label for="exampleFormControlInput1" class="form-label">Supplement</label>
+                                <label for="exampleFormControlInput1" class="form-label">Tiện nghi</label>
                             </div>
-                            <div class="form-check" *ngFor="let data of supplements">
-                                <input class="form-check-input supplements" type="checkbox"
+                            <div class="form-check" *ngFor="let data of tiennghi">
+                                <input class="form-check-input tiennghi" type="checkbox"
                                     (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
                                 <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
                             </div>
@@ -93,41 +126,11 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="d-flex">
-                            <div class="my-1 mx-3">
-                                <div>
-                                    <label for="exampleFormControlInput1" class="form-label">Sleeping places</label>
-                                </div>
-                                <div class="form-check " *ngFor="let data of sleepingPlaces">
-                                    <input class="form-check-input sleepingPlaces" type="checkbox"
-                                        (change)="sleepingCheckbox($event)" id="{{data._id}}" value="{{data._id}}">
-                                    <label class="form-check-label" for="{{data._id}}">
-                                        {{data.bedroom}}<span class="px-1">/</span>{{data.bed}}
-                                    </label>
-                                </div>
-                                <div>
-                                    <span style="color: red" *ngIf="checkSleeping && touching">
-                                        at least one selected sleeping place!
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="my-1 mx-3">
-                                <div>
-                                    <label for="exampleFormControlInput1" class="form-label">Bathroom</label>
-                                </div>
-                                <div class="form-check " *ngFor="let data of bathRooms">
-                                    <input class="form-check-input bathrooms" type="checkbox" id="{{data._id}}"
-                                        value="{{data._id}}">
-                                    <label class="form-check-label" for="{{data._id}}">
-                                        {{data.name}}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                     
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
-                                    formControlName="houropening" />
+                                    formControlName="timeDat" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -137,14 +140,14 @@
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('houropening')?.touched && reactiveForm.get('houropening')?.invalid">
+                                *ngIf="reactiveForm.get('timeDat')?.touched && reactiveForm.get('timeDat')?.invalid">
                                 hour opening required!
                             </span>
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
-                                    formControlName="hourending" />
+                                    formControlName="timeTra" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -154,25 +157,8 @@
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('hourending')?.touched && reactiveForm.get('hourending')?.invalid">
+                                *ngIf="reactiveForm.get('timeTra')?.touched && reactiveForm.get('timeTra')?.invalid">
                                 hour ending required!
-                            </span>
-                        </div>
-                        <div class="input-group my-2">
-                            <div class="input-group">
-                                <input class="form-control" id="search" placeholder="nhập địa chỉ nhà của bạn"
-                                    formControlName="place" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-map"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('place')?.touched && reactiveForm.get('place')?.invalid">
-                                address required!
                             </span>
                         </div>
                         <div class="input-group my-2">
@@ -212,8 +198,8 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control" type="number" min="1" placeholder="nhập giới hạn người ở"
-                                    formControlName="limitPerson" />
+                                <input class="form-control"  placeholder="nhập diện tích"
+                                    formControlName="dienTich" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -223,14 +209,14 @@
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('limitPerson')?.touched && reactiveForm.get('limitPerson')?.invalid">
-                                Limit person required!
+                                *ngIf="reactiveForm.get('dienTich')?.touched && reactiveForm.get('dienTich')?.invalid">
+                                Diện tích không được để trống
                             </span>
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <textarea class="form-control" formControlName="content"
-                                    placeholder="Nhập mô tả về Bất động sản của bạn" id="floatingTextarea"></textarea>
+                                    placeholder="Nhập mô tả" id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -245,62 +231,17 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="legal"
+                                <textarea class="form-control" formControlName="chinhsach"
                                     placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiết cần có"
                                     id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
                             <span style="color: red"
-                                *ngIf="reactiveForm.get('legal')?.touched && reactiveForm.get('legal')?.invalid">
+                                *ngIf="reactiveForm.get('chinhsach')?.touched && reactiveForm.get('chinhsach')?.invalid">
                                 legal required!
                             </span>
                         </div>
-
-
-
-
-                        <div class="input-group my-2">
-                            <div class="input-group">
-                                <textarea class="form-control" formControlName="startDate"
-                                    placeholder="Nhập ngày bắt đầu có thể mở cửa" id="floatingTextarea"></textarea>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('startDate')?.touched && reactiveForm.get('startDate')?.invalid">
-                                legal required!
-                            </span>
-                        </div>
-
-
-                        <div class="input-group my-2">
-                            <div class="input-group">
-                                <textarea class="form-control" formControlName="endDate"
-                                    placeholder="Nhập ngày Kết thúc" id="floatingTextarea"></textarea>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('endDate')?.touched && reactiveForm.get('endDate')?.invalid">
-                                legal required!
-                            </span>
-                        </div>
-
-
-                        <div class="input-group my-2">
-                            <div class="input-group">
-                                <textarea class="form-control" formControlName="cancellatioDate"
-                                    placeholder="Nhập ngày Bắt đầu cho hủy phòng" id="floatingTextarea"></textarea>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('cancellatioDate')?.touched && reactiveForm.get('cancellatioDate')?.invalid">
-                                legal required!
-                            </span>
-                        </div>
-
 
                         <div>
                             <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
@@ -326,5 +267,5 @@
                 </div>
             </form>
         </div>
-    </div><!-- /.card -->
+    </div>
 </div>

@@ -45,6 +45,11 @@ export class HttpservicesService {
   getSupplement(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/suplements`)
   }
+
+  getAllTienNghiKs(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getAllTienNghiKs`)
+  }
+
   getSleepingPlaces(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/sleeping`)
   }
@@ -54,6 +59,11 @@ export class HttpservicesService {
   getSupplements(listIdSupplements: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/getsupplements`, listIdSupplements)
   }
+
+  getTienNghiKs(listIdTienNghi: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/getTienNghiKs`, listIdTienNghi)
+  }
+
   getSleepById(listIdSleeping: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/sleepingplaces`, listIdSleeping)
   }
@@ -66,6 +76,11 @@ export class HttpservicesService {
   createPro(dataPro: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/addProduct`, dataPro)
   }
+
+  createHotel(dataPro: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/addHotel`, dataPro)
+  }
+
   updatePro(dataPro: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/updateProduct`, dataPro)
   }
@@ -169,6 +184,10 @@ export class HttpservicesService {
 
   deleteHouseId(data: any): Observable<any[]>{
     return this.httpRequests.delete<any[]>(`${this.API}/deleteProduct/${data.id}`)
+  }
+
+  deleteHotelId(data: any): Observable<any[]>{
+    return this.httpRequests.delete<any[]>(`${this.API}/deleteHotel/${data.id}`)
   }
 
   getCountOrder(data: any): Observable<any[]>{
