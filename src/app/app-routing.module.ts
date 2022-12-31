@@ -15,6 +15,10 @@ import { StatisticalComponent } from './components/admin/statistical/statistical
 import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { CreateHotelComponent } from './components/admin/product/create-hotel/create-hotel.component';
+import { UpdateHotelComponent } from './components/admin/product/update-hotel/update-hotel.component';
+import { ListPhongComponent } from './components/admin/phong/listPhong/list-phong/list-phong.component';
+import { CreatePhongComponent } from './components/admin/phong/listPhong/createPhong/create-phong/create-phong.component';
+import { UpdatePhongComponent } from './components/admin/phong/listPhong/updatePhong/update-phong/update-phong.component';
 
 const routes: Routes = [
   {
@@ -27,6 +31,10 @@ const routes: Routes = [
           { path: 'updatepro', component: UpdateComponent },
         ]
       },
+      {path: 'listphong',component: ListPhongComponent},
+      {path: 'createphong',component: CreatePhongComponent},
+      {path: 'updatephong',component: UpdatePhongComponent},
+      {path: 'updatehotel',component: UpdateHotelComponent},
       { path: 'feedback', component: FeedbackComponent },
       { path: 'Message', component: MessageComponent },
       { path: 'order', component: ListorderComponent },

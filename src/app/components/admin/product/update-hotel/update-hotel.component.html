@@ -7,7 +7,7 @@
                     <div class="col-lg-4">
                         <div class="input-group my-1">
                             <input type="text" class="form-control" formControlName="name"
-                                placeholder="Nhập tên khách sạn của bạn">
+                                placeholder="Nhập tên khách sạn của bạn" [ngModel]="getHotelById.name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -27,7 +27,7 @@
                         <label for="exampleFormControlInput1" class="form-label">Địa điểm</label>
                         <div class="input-group my-1">
                             <input type="text" class="form-control" formControlName="tinh"
-                                placeholder="Nhập tỉnh/thành phố">
+                                placeholder="Nhập tỉnh/thành phố" [ngModel]="getHotelById.tinh">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="input-group my-1">
                             <input type="text" class="form-control" formControlName="huyen"
-                                placeholder="Nhập quận/huyện">
+                                placeholder="Nhập quận/huyện" [ngModel]="getHotelById.huyen">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -58,7 +58,7 @@
 
                         <div class="input-group my-1">
                             <input type="text" class="form-control" formControlName="xa"
-                                placeholder="Nhập xã/phường">
+                                placeholder="Nhập xã/phường" [ngModel]="getHotelById.xa">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="input-group my-1">
                             <input type="text" class="form-control" formControlName="sonha"
-                                placeholder="Nhập số nhà/ tên đường">
+                                placeholder="Nhập số nhà/ tên đường" [ngModel]="getHotelById.sonha">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -98,6 +98,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-3" *ngFor="let data of getHotelById.images">
+                                <img src="{{data}}" alt="" class="rounded" width="70px" height="70px" style="margin: 10px;">
+                            </div>
+                           </div>
                         <div>
                             <span style="color: red"
                                 *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">
@@ -115,7 +120,7 @@
                             </div>
                             <div class="form-check" *ngFor="let data of tiennghi">
                                 <input class="form-check-input tiennghi" type="checkbox"
-                                    (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                [checked]="isCheckTienNghi(data.name)"  (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
                                 <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
                             </div>
                             <div>
@@ -130,7 +135,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
-                                    formControlName="timeDat" />
+                                    formControlName="timeDat" [ngModel]="getHotelById.timeDat"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -147,7 +152,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
-                                    formControlName="timeTra" />
+                                    formControlName="timeTra" [ngModel]="getHotelById.timeTra"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -164,7 +169,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Latitude"
-                                    formControlName="Latitude" />
+                                    formControlName="Latitude" [ngModel]="getHotelById.latitude"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -181,7 +186,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Longitude"
-                                    formControlName="Longitude" />
+                                    formControlName="Longitude" [ngModel]="getHotelById.longitude"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -199,7 +204,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control"  placeholder="nhập diện tích"
-                                    formControlName="dienTich" />
+                                    formControlName="dienTich" [ngModel]="getHotelById.dienTich"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -215,7 +220,7 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="content"
+                                <textarea class="form-control" formControlName="content" [ngModel]="getHotelById.mota"
                                     placeholder="Nhập mô tả" id="floatingTextarea"></textarea>
                             </div>
                         </div>
@@ -231,7 +236,7 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="chinhsach"
+                                <textarea class="form-control" formControlName="chinhsach" [ngModel]="getHotelById.chinhsach"
                                     placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiết cần có"
                                     id="floatingTextarea"></textarea>
                             </div>
@@ -248,12 +253,12 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                value=true>
+                               [checked]="getHotelById.yte == true? true: false" value=true>
                             <label class="form-check-label" for="inlineRadio1">có</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                value=false>
+                            [checked]="getHotelById.yte == false? true: false" value=false>
                             <label class="form-check-label" for="inlineRadio2">không</label>
                         </div>
                     </div>
@@ -262,7 +267,7 @@
                     <div class="col-8">
                     </div>
                     <div class=" col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Thêm khách sạn</button>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
                     </div>
                 </div>
             </form>

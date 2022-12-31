@@ -26,7 +26,11 @@ import { ListComponent } from './components/admin/product/createproducts/list/li
 import { ListorderComponent } from './components/admin/order/listorder/listorder.component';
 import { UpdateComponent } from './components/admin/product/createproducts/update/update.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { CreateHotelComponent } from './components/admin/product/create-hotel/create-hotel.component'
+import { CreateHotelComponent } from './components/admin/product/create-hotel/create-hotel.component';
+import { UpdateHotelComponent } from './components/admin/product/update-hotel/update-hotel.component';
+import { ListPhongComponent } from './components/admin/phong/listPhong/list-phong/list-phong.component';
+import { CreatePhongComponent } from './components/admin/phong/listPhong/createPhong/create-phong/create-phong.component';
+import { UpdatePhongComponent } from './components/admin/phong/listPhong/updatePhong/update-phong/update-phong.component'
 
 
 @NgModule({
@@ -51,6 +55,10 @@ import { CreateHotelComponent } from './components/admin/product/create-hotel/cr
     UpdateComponent,
     FeedbackComponent,
     CreateHotelComponent,
+    UpdateHotelComponent,
+    ListPhongComponent,
+    CreatePhongComponent,
+    UpdatePhongComponent,
     
   ],
   imports: [

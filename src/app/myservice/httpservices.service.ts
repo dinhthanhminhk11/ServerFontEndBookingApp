@@ -12,6 +12,13 @@ export class HttpservicesService {
   private IdHouse= new BehaviorSubject<string>('');
   currentID = this.IdHouse.asObservable();
 
+  private IdHotel= new BehaviorSubject<string>('');
+  currentIDHotel = this.IdHotel.asObservable();
+
+  
+  private IdPhong= new BehaviorSubject<string>('');
+  currentIDPhong= this.IdPhong.asObservable();
+
   public url = 'http://localhost:8080'
   constructor(private httpRequests: HttpClient) {
     this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] })
@@ -42,12 +49,25 @@ export class HttpservicesService {
   getHotelByHost(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getHotelHost/${data.id}`)
   }
+
+  getPhongByHotel(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPhongByIdHotel/${data.idHotel}`)
+  }
+
+  getPhongById(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPhongById/${data.id}`)
+  }
+
   getSupplement(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/suplements`)
   }
 
   getAllTienNghiKs(): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getAllTienNghiKs`)
+  }
+
+  getAllTienNghiPhong(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getAllTienNghiPhong`)
   }
 
   getSleepingPlaces(): Observable<any[]> {
@@ -62,6 +82,10 @@ export class HttpservicesService {
 
   getTienNghiKs(listIdTienNghi: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/getTienNghiKs`, listIdTienNghi)
+  }
+
+  getTienNghiPhong(listIdTienNghi: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/getTienNghiPhong`, listIdTienNghi)
   }
 
   getSleepById(listIdSleeping: any): Observable<any[]> {
@@ -81,9 +105,22 @@ export class HttpservicesService {
     return this.httpRequests.post<any[]>(`${this.API}/addHotel`, dataPro)
   }
 
+  createPhong(dataPro: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/addPhong`, dataPro)
+  }
+
   updatePro(dataPro: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/updateProduct`, dataPro)
   }
+
+  updateHotel(dataHotel: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/updateHotel`, dataHotel)
+  }
+
+  updatePhong(dataPhong: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/updatePhong`, dataPhong)
+  }
+  
   listOrder(dataHost: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/order`, dataHost)
   }
@@ -190,6 +227,10 @@ export class HttpservicesService {
     return this.httpRequests.delete<any[]>(`${this.API}/deleteHotel/${data.id}`)
   }
 
+  deletePhongId(data: any): Observable<any[]>{
+    return this.httpRequests.delete<any[]>(`${this.API}/deletePhong/${data.id}`)
+  }
+
   getCountOrder(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/totalOrder/${data.IdHost}`)
   }
@@ -233,10 +274,21 @@ export class HttpservicesService {
     this.IdHouse.next(IdHouse)
   }
 
+  getIdHotel(IdHotel: string){
+    this.IdHotel.next(IdHotel)
+  }
+  getIdPhong(IdPhong: string){
+    this.IdPhong.next(IdPhong)
+  }
+
+
   getProductId(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/listProduct/${data.id}`)
   }
 
+  getHotelById(data: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getHotelById/${data.id}`)
+  }
 
   getFeedbackId(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/listFeedBack/${data.idHouse}`)

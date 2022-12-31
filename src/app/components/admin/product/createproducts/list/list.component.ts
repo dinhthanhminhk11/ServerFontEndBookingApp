@@ -44,4 +44,13 @@ export class ListComponent implements OnInit {
   clickIdHouse(idHouse: any){
     this.http.changeIdHouse(idHouse)
   }
+
+  getHotel(Hotel: any){
+
+    localStorage.setItem('Hotel', JSON.stringify(Hotel))    
+  }
+
+  getIdHotel(idHotel : any){
+    this.http.getIdHotel(idHotel)
+  }
 }

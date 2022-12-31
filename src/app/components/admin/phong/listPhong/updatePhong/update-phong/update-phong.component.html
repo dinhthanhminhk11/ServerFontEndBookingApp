@@ -1,0 +1,168 @@
+<ngx-spinner></ngx-spinner>
+<div class="col-12">
+    <div class="card card-outline card-primary">
+        <div class="card-body">
+            <form [formGroup]="reactiveForm" (ngSubmit)="onsubmit()">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="exampleFormControlInput1" class="form-label">Tên phòng</label>
+                        <div class="input-group my-1">
+                            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên phòng"
+                                [ngModel]="dataPhong.name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('name')?.touched && reactiveForm.get('name')?.errors?.['required']">
+                                name required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('name')?.errors?.['minlength'] && reactiveForm.get('name')?.touched && reactiveForm.get('name')?.invalid">
+                                name required at least 5 characters!
+                            </span>
+                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Giá phòng</label>
+                        <div class="input-group my-1">
+                            <input type="number" class="form-control" formControlName="price"
+                                placeholder="Nhập giá phòng" [ngModel]="dataPhong.price">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-product-hunt"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('price')?.touched && reactiveForm.get('price')?.errors?.['required']">
+                                Giá không được để trống
+                            </span>
+                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Ảnh phòng</label>
+                        <div class="input-group my-1">
+                            <input type="file" class="form-control" multiple formControlName="avatar" id="avatarInput"
+                                placeholder="Ảnh phòng">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-image"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-3" *ngFor="let data of dataPhong.images">
+                                    <img src="{{data}}" alt="" class="rounded" width="70px" height="70px"
+                                        style="margin: 10px;">
+                                </div>
+                            </div>
+
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">
+                                avatar required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.errors?.['formatimage'] && reactiveForm.get('avatar')?.value!==''">
+                                incorrecly image formating jpg png jpeg!
+                            </span>
+                        </div>
+
+                        <div class="my-3 mx-2">
+                            <div>
+                                <label for="exampleFormControlInput1" class="form-label">Tiện nghi</label>
+                            </div>
+                            <div class="form-check" *ngFor="let data of tiennghi">
+                                <input class="form-check-input tiennghi" type="checkbox"
+                                [checked]="isCheckTienNghi(data.name)" (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+                            <div>
+                                <span style="color: red" *ngIf="checkSupplement && touching">
+                                    at least one selected supplement!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <label for="exampleFormControlInput1" class="form-label">Tổng số phòng</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="search" placeholder="nhập số phòng"
+                                    formControlName="sophong" [ngModel]="dataPhong.SoPhong" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('sophong')?.touched && reactiveForm.get('sophong')?.invalid">
+                                số phòng không được để trống
+                            </span>
+                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Số giường</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="search" placeholder="nhập số giường"
+                                    formControlName="sogiuong" [ngModel]="dataPhong.SoGiuong" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('sogiuong')?.touched && reactiveForm.get('sogiuong')?.invalid">
+                                số giường không để trống
+                            </span>
+                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Diện tích phòng</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="nhập diện tích phòng"
+                                    formControlName="dienTich" [ngModel]="dataPhong.dienTich" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('dienTich')?.touched && reactiveForm.get('dienTich')?.invalid">
+                                Diện tích không được để trống
+                            </span>
+                        </div>
+                        <label for="exampleFormControlInput1" class="form-label">Mô tả</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <textarea class="form-control" formControlName="content" placeholder="Nhập mô tả"
+                                    id="floatingTextarea" [ngModel]="dataPhong.mota"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('content')?.touched && reactiveForm.get('content')?.invalid">
+                                Nhập mô tả phòng
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <div class=" col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sửa phòng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
