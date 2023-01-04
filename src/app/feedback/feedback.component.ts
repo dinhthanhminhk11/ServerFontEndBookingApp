@@ -20,7 +20,7 @@ export class FeedbackComponent implements OnInit{
   ngOnInit(): void {
     
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
-    this.http.getHouseByHost({ id: this.idHost }).subscribe((data: any) => {
+    this.http.getHotelByHost({ id: this.idHost }).subscribe((data: any) => {
       this.product = data.datapros
       this.load = false
     })
