@@ -70,6 +70,10 @@ export class HttpservicesService {
     return this.httpRequests.get<any[]>(`${this.API}/getAllTienNghiPhong`)
   }
 
+  getAllLoaiGiuong(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/bedroom`)
+  }
+
   getSleepingPlaces(): Observable<any[]> {
     return this.httpRequests.get<any[]>(`${this.API}/sleeping`)
   }
@@ -86,6 +90,10 @@ export class HttpservicesService {
 
   getTienNghiPhong(listIdTienNghi: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/getTienNghiPhong`, listIdTienNghi)
+  }
+
+  getBedroomById(listIdBedRoom: any): Observable<any[]> {
+    return this.httpRequests.post<any[]>(`${this.API}/bedroomById`, listIdBedRoom)
   }
 
   getSleepById(listIdSleeping: any): Observable<any[]> {

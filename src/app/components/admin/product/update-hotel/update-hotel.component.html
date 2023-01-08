@@ -57,8 +57,8 @@
                         </div>
 
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="xa"
-                                placeholder="Nhập xã/phường" [ngModel]="getHotelById.xa">
+                            <input type="text" class="form-control" formControlName="xa" placeholder="Nhập xã/phường"
+                                [ngModel]="getHotelById.xa">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -100,9 +100,10 @@
                         </div>
                         <div class="row">
                             <div class="col-3" *ngFor="let data of getHotelById.images">
-                                <img src="{{data}}" alt="" class="rounded" width="70px" height="70px" style="margin: 10px;">
+                                <img src="{{data}}" alt="" class="rounded" width="70px" height="70px"
+                                    style="margin: 10px;">
                             </div>
-                           </div>
+                        </div>
                         <div>
                             <span style="color: red"
                                 *ngIf="reactiveForm.get('avatar')?.touched && reactiveForm.get('avatar')?.value==''">
@@ -120,7 +121,8 @@
                             </div>
                             <div class="form-check" *ngFor="let data of tiennghi">
                                 <input class="form-check-input tiennghi" type="checkbox"
-                                [checked]="isCheckTienNghi(data.name)"  (change)="supplementCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                    [checked]="isCheckTienNghi(data.name)" (change)="supplementCheckbox($event)"
+                                    id="{{data.name}}" value="{{data._id}}">
                                 <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
                             </div>
                             <div>
@@ -131,11 +133,75 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                     
+
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Thông tin xác thực</label>
+                        </div>
+
+                        <div class="input-group my-1">
+                            <input type="file" class="form-control" multiple formControlName="avatarXT"
+                                id="avatarInputXT" placeholder="Avatar">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-image"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3" *ngFor="let data of getHotelById.imageConfirm">
+                                <img src="{{data}}" alt="" class="rounded" width="70px" height="70px"
+                                    style="margin: 10px;">
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatarXT')?.touched && reactiveForm.get('avatarXT')?.value==''">
+                                avatar required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatarXT')?.touched && reactiveForm.get('avatarXT')?.errors?.['formatimage'] && reactiveForm.get('avatarXT')?.value!==''">
+                                incorrecly image formating jpg png jpeg!
+                            </span>
+                        </div>
+
+                        <div class="small-box bg-light" style="padding: 10px; margin-top: 15px;">
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Việc gửi các ảnh xác
+                                thực sẽ là điều kiện quan trọng giúp nhà cung cấp <br> có đầy đủ cơ sở pháp lý để hoạt
+                                động kinh doanh trên nền tảng của chúng tôi</p>
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Gợi ý một số loại
+                                giấy tờ phù hợp : </p>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">
+                                Giấy phép đăng ký kinh doanh</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">
+                                Giấy chứng nhận quyền sử dụng đất</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">
+                                Hợp đồng thuê mặt bằng</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">
+                                Hóa đơn đóng tiền điện nước (ít nhất 2 tháng gần nhất)</li>
+                        </div>
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập giá dao động"
+                                    formControlName="giaDaoDong" [ngModel]="getHotelById.giaDaoDong" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('giaDaoDong')?.touched && reactiveForm.get('giaDaoDong')?.invalid">
+                                giá ko được để trống
+                            </span>
+                        </div>
+
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
-                                    formControlName="timeDat" [ngModel]="getHotelById.timeDat"/>
+                                    formControlName="timeDat" [ngModel]="getHotelById.timeDat" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -152,7 +218,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
-                                    formControlName="timeTra" [ngModel]="getHotelById.timeTra"/>
+                                    formControlName="timeTra" [ngModel]="getHotelById.timeTra" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-clock"></span>
@@ -169,7 +235,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Latitude"
-                                    formControlName="Latitude" [ngModel]="getHotelById.latitude"/>
+                                    formControlName="Latitude" [ngModel]="getHotelById.location.coordinates[1]" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -186,7 +252,7 @@
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập Longitude"
-                                    formControlName="Longitude" [ngModel]="getHotelById.longitude"/>
+                                    formControlName="Longitude" [ngModel]="getHotelById.location.coordinates[0]" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -203,8 +269,8 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control"  placeholder="nhập diện tích"
-                                    formControlName="dienTich" [ngModel]="getHotelById.dienTich"/>
+                                <input class="form-control" type="number" placeholder="nhập diện tích" formControlName="dienTich"
+                                    [ngModel]="getHotelById.dienTich" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -231,12 +297,10 @@
                             </span>
                         </div>
 
-
-
-
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="chinhsach" [ngModel]="getHotelById.chinhsach"
+                                <textarea class="form-control" formControlName="chinhsach"
+                                    [ngModel]="getHotelById.chinhsach"
                                     placeholder="chính sách hoàn huỷ hoặc nhưng thứ cần thiết cần có"
                                     id="floatingTextarea"></textarea>
                             </div>
@@ -247,19 +311,58 @@
                                 legal required!
                             </span>
                         </div>
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Quy định trẻ em</label>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" placeholder="Số tuổi quy định"
+                                [ngModel]="getHotelById.treEm"
+                                    formControlName="treEm" />
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('treEm')?.touched && reactiveForm.get('treEm')?.invalid">
+                                Số tuổi ko để trống
+                            </span>
+                        </div>
 
                         <div>
                             <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                               [checked]="getHotelById.yte == true? true: false" value=true>
+                                [checked]="getHotelById.yte == true? true: false" value=true>
                             <label class="form-check-label" for="inlineRadio1">có</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input yte" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            [checked]="getHotelById.yte == false? true: false" value=false>
+                                [checked]="getHotelById.yte == false? true: false" value=false>
                             <label class="form-check-label" for="inlineRadio2">không</label>
+                        </div>
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label" style="margin-top: 18px;">Hỗ trợ
+                                hoàn hủy</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chinhsachhuy"
+                                [checked]="getHotelById.chinhSachHuy == true? true: false" (click)="checkHuy(false)"
+                                type="radio" name="inline" id="inlineRadio1" value=true>
+                            <label class="form-check-label" for="inlineRadio1">Hỗ trợ hoàn hủy</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chinhsachhuy"
+                                [checked]="getHotelById.chinhSachHuy == false? true: false" (click)="checkHuy(true)"
+                                type="radio" name="inline" id="inlineRadio2" value=false>
+                            <label class="form-check-label" for="inlineRadio2">không hoàn hủy</label>
+                        </div>
+                        <div class="small-box bg-light" style="padding: 10px; margin-top: 15px;"
+                            [hidden]="checkChinhSachHuy">
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Nếu bạn hủy trước
+                                24h kể từ lúc đặt phòng sẽ được hỗ trợ hoàn hủy</p>
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Nếu hủy sau 24h sẽ
+                                không được hoàn tiền đặt phòng</p>
                         </div>
                     </div>
                 </div>

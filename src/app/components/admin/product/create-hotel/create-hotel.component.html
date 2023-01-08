@@ -57,8 +57,7 @@
                         </div>
 
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="xa"
-                                placeholder="Nhập xã/phường">
+                            <input type="text" class="form-control" formControlName="xa" placeholder="Nhập xã/phường">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -125,8 +124,62 @@
                             </div>
                         </div>
                     </div>
+ 
+                   
+
                     <div class="col-lg-8">
-                     
+
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Thông tin xác thực</label>
+                        </div>
+    
+                        <div class="input-group my-1">
+                            <input type="file" class="form-control" multiple formControlName="avatarXT" id="avatarInputXT"
+                                placeholder="Avatar">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-image"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatarXT')?.touched && reactiveForm.get('avatarXT')?.value==''">
+                                avatar required!
+                            </span>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('avatarXT')?.touched && reactiveForm.get('avatarXT')?.errors?.['formatimage'] && reactiveForm.get('avatarXT')?.value!==''">
+                                incorrecly image formating jpg png jpeg!
+                            </span>
+                        </div>
+
+                        <div class="small-box bg-light" style="padding: 10px; margin-top: 15px;">
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Việc gửi các ảnh xác thực sẽ là điều kiện quan trọng giúp nhà cung cấp <br> có đầy đủ cơ sở pháp lý để hoạt động kinh doanh trên nền tảng của chúng tôi</p>
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Gợi ý một số loại giấy tờ phù hợp : </p>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">Giấy phép đăng ký kinh doanh</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">Giấy chứng nhận quyền sử dụng đất</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">Hợp đồng thuê mặt bằng</li>
+                            <li style="color: rgb(46, 163, 167);font-weight: 450; font-size: 13px; margin-left: 15px;">Hóa đơn đóng tiền điện nước (ít nhất 2 tháng gần nhất)</li>
+                        </div>
+
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" id="search" placeholder="nhập giá dao động"
+                                    formControlName="giaDaoDong" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-clock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('giaDaoDong')?.touched && reactiveForm.get('giaDaoDong')?.invalid">
+                                giá ko được để trống
+                            </span>
+                        </div>
+
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ mở cửa"
@@ -144,6 +197,7 @@
                                 hour opening required!
                             </span>
                         </div>
+            
                         <div class="input-group my-2">
                             <div class="input-group">
                                 <input class="form-control" id="search" placeholder="nhập giờ đóng cửa"
@@ -198,8 +252,7 @@
 
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control"  placeholder="nhập diện tích"
-                                    formControlName="dienTich" />
+                                <input class="form-control" type="number" placeholder="nhập diện tích" formControlName="dienTich" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-map"></span>
@@ -215,8 +268,8 @@
                         </div>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="content"
-                                    placeholder="Nhập mô tả" id="floatingTextarea"></textarea>
+                                <textarea class="form-control" formControlName="content" placeholder="Nhập mô tả"
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>
@@ -242,8 +295,23 @@
                                 legal required!
                             </span>
                         </div>
-
+                        
                         <div>
+                            <label for="exampleFormControlInput1" class="form-label">Quy định trẻ em</label>
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" placeholder="Số tuổi quy định" formControlName="treEm" />
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('treEm')?.touched && reactiveForm.get('treEm')?.invalid">
+                                Số tuổi ko để trống
+                            </span>
+                        </div>
+
+                        <div style="margin-top: 16px;">
                             <label for="exampleFormControlInput1" class="form-label">Y tế an toàn</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -256,7 +324,26 @@
                                 value=false>
                             <label class="form-check-label" for="inlineRadio2">không</label>
                         </div>
+
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label" style="margin-top: 18px;">Hỗ trợ
+                                hoàn hủy</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chinhsachhuy" (click)="checkHuy(false)" type="radio" name="inline" id="inlineRadio1" value=true>
+                            <label class="form-check-label" for="inlineRadio1">Hỗ trợ hoàn hủy</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chinhsachhuy"  (click)="checkHuy(true)" type="radio" name="inline" id="inlineRadio2"
+                                value=false>
+                            <label class="form-check-label" for="inlineRadio2">không hoàn hủy</label>
+                        </div>
+                        <div class="small-box bg-light" style="padding: 10px; margin-top: 15px;" [hidden]="checkChinhSachHuy">
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Nếu bạn hủy trước 24h kể từ lúc đặt phòng sẽ được hỗ trợ hoàn hủy</p>
+                            <p style="color: rgb(46, 163, 167); font-weight: 500; font-size: 14px;">Nếu hủy sau 24h sẽ không được hoàn tiền đặt phòng</p>
+                        </div>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-8">

@@ -16,6 +16,9 @@ export class UpdatePhongComponent implements OnInit {
   reactiveForm!: FormGroup
   listAvatars: any[] = []
   subSupplements: any[] = []
+  bedRoom: any[] = []
+  checkBedRoom: boolean = true
+  loaigiuong!: any
   tiennghi!: any
   checkSupplement: boolean = true
   touching: boolean = false
@@ -35,30 +38,41 @@ export class UpdatePhongComponent implements OnInit {
     this.httpRequest.getPhongById({ id: this.idPhong }).subscribe((data: any) => {
       this.dataPhong = data
     })
+    this.httpRequest.getAllLoaiGiuong().subscribe((data: any) => {
+      this.loaigiuong = data.dataSleeping
+    })
 
     this.reactiveForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       avatar: new FormControl(null, [Validators.required, this.checkFormatImage]),
       price: new FormControl(null, Validators.required),
       sophong: new FormControl(null, Validators.required),
-      sogiuong: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required),
       dienTich: new FormControl(null, Validators.required),
+      maxNguoiLon: new FormControl(null, Validators.required),
+      maxTreEm: new FormControl(null, Validators.required),
     })
 
   }
 
   onsubmit() {
     let totalTienNghi = 0
+    let totalBedroom = 0
     const tiennghi = document.querySelectorAll('.tiennghi')
     const avatars: any = document.querySelector('#avatarInput')
+    const bedroom = document.querySelectorAll('.bedroom')
     tiennghi.forEach((items: any) => {
       if (items.checked) {
         totalTienNghi += 1
       }
     })
+    bedroom.forEach((items: any) => {
+      if (items.checked) {
+        totalBedroom += 1
+      }
+    })
     if (avatars.files.length == 0) {
-      if(totalTienNghi == 0){
+      if (totalTienNghi == 0 || totalBedroom == 0) {
         this.toastr.error({ detail: "Notice", summary: "Check!, Your Information is missing.", duration: 2000, })
         return
       }
@@ -72,6 +86,13 @@ export class UpdatePhongComponent implements OnInit {
           })
         }
       })
+      bedroom.forEach((item: any) => {
+        if (item.checked) {
+          this.httpRequest.getBedroomById({ id: item.value }).subscribe((data: any) => {
+            this.bedRoom.push(data.dataSleeping)
+          })
+        }
+      })
       setTimeout(() => {
         this.touching = true
         const dataAddForm = {
@@ -82,24 +103,29 @@ export class UpdatePhongComponent implements OnInit {
           TienNghiPhong: this.subSupplements,
           dienTich: this.reactiveForm.get('dienTich')?.value,
           SoPhong: this.reactiveForm.get('sophong')?.value,
-          SoGiuong: this.reactiveForm.get('sogiuong')?.value,
           mota: this.reactiveForm.get('content')?.value,
+          MaxNguoiLon: this.reactiveForm.get('maxNguoiLon')?.value,
+          MaxTreEm: this.reactiveForm.get('maxTreEm')?.value,
+          bedroom: this.bedRoom,
         }
         this.httpRequest.updatePhong(dataAddForm).subscribe((data: any) => {
           tiennghi.forEach((items: any) => {
             items.checked = false
           })
+          bedroom.forEach((items:any)=>{
+            items.checked = false
+          })
           this.spiner.hide()
-          this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration:800 })
+          this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration: 800 })
           this.router.navigate(['admin/listphong'])
           this.router.resetConfig
-          
+
         })
       }, 1100)
 
-     
+
     } else {
-      if (!this.reactiveForm.valid || totalTienNghi == 0) {
+      if (!this.reactiveForm.valid || totalTienNghi == 0 || totalBedroom==0) {
         this.toastr.error({ detail: "Notice", summary: "Check!, Your Information is missing.", duration: 6000, })
       } else {
         this.spiner.show(undefined, {
@@ -117,6 +143,13 @@ export class UpdatePhongComponent implements OnInit {
             })
           }
         })
+        bedroom.forEach((item: any) => {
+          if (item.checked) {
+            this.httpRequest.getBedroomById({ id: item.value }).subscribe((data: any) => {
+              this.bedRoom.push(data.dataSleeping)
+            })
+          }
+        })
         setTimeout(() => {
           this.touching = true
           const dataAddForm = {
@@ -127,19 +160,24 @@ export class UpdatePhongComponent implements OnInit {
             TienNghiPhong: this.subSupplements,
             dienTich: this.reactiveForm.get('dienTich')?.value,
             SoPhong: this.reactiveForm.get('sophong')?.value,
-            SoGiuong: this.reactiveForm.get('sogiuong')?.value,
             mota: this.reactiveForm.get('content')?.value,
+            MaxNguoiLon: this.reactiveForm.get('maxNguoiLon')?.value,
+          MaxTreEm: this.reactiveForm.get('maxTreEm')?.value,
+          bedroom: this.bedRoom,
           }
           this.httpRequest.updatePhong(dataAddForm).subscribe((data: any) => {
             tiennghi.forEach((items: any) => {
               items.checked = false
             })
+            bedroom.forEach((items:any)=>{
+              items.checked = false
+            })
             this.spiner.hide()
-            this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration: 5000, })
+            this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration: 3000, })
             this.router.navigate(['admin/listphong'])
             this.router.resetConfig
           })
-        }, 7000)
+        }, 4000)
       }
     }
 
@@ -171,5 +209,20 @@ export class UpdatePhongComponent implements OnInit {
       }
     }
     return false
+  }
+
+  isCheckBedRoom(data: any): Boolean {
+    for (let i = 0; i < (this.dataPhong.bedroom).length; i++) {
+      if (data == this.dataPhong.bedroom[i].name) {
+        return true
+      }
+    }
+    return false
+  }
+
+  bedRoomCheckbox(checkBox: any) {
+    if (checkBox.target.checked) {
+      this.checkBedRoom = false
+    }
   }
 }

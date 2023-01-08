@@ -1,4 +1,4 @@
-<div class="btn-group" >
+<div class="btn-group">
     <a routerLink="/admin/createphong" class="btn btn-primary active" aria-current="page">Thêm phòng</a>
     <a routerLink="/admin/listphong" class="btn btn-primary">danh sách phòng</a>
 </div>
@@ -14,8 +14,7 @@
                     <div class="col-lg-4">
                         <label for="exampleFormControlInput1" class="form-label">Tên phòng</label>
                         <div class="input-group my-1">
-                            <input type="text" class="form-control" formControlName="name"
-                                placeholder="Nhập tên phòng">
+                            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên phòng">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-product-hunt"></span>
@@ -86,6 +85,19 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
+                        <div class="my-3 mx-2">
+                            <label for="exampleFormControlInput1" class="form-label">Loại giường</label>
+                            <div class="form-check" style="padding-top: 5px;" *ngFor="let data of loaigiuong">
+                                <input class="form-check-input bedroom" type="checkbox"
+                                    (change)="bedRoomCheckbox($event)" id="{{data.name}}" value="{{data._id}}">
+                                <label class="form-check-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+                            <div>
+                                <span style="color: red" *ngIf="checkBedRoom && touching">
+                                    Loại giường ko để trống
+                                </span>
+                            </div>
+                        </div>
                         <label for="exampleFormControlInput1" class="form-label">Tổng số phòng</label>
                         <div class="input-group my-2">
                             <div class="input-group">
@@ -93,7 +105,7 @@
                                     formControlName="sophong" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <span class="fas fa-clock"></span>
+                                        <span class="fas fa-map"></span>
                                     </div>
                                 </div>
                             </div>
@@ -104,28 +116,11 @@
                                 số phòng không được để trống
                             </span>
                         </div>
-                        <label for="exampleFormControlInput1" class="form-label">Số giường</label>
-                        <div class="input-group my-2">
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="search" placeholder="nhập số giường"
-                                    formControlName="sogiuong" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-clock"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span style="color: red"
-                                *ngIf="reactiveForm.get('sogiuong')?.touched && reactiveForm.get('sogiuong')?.invalid">
-                                số giường không để trống
-                            </span>
-                        </div>
+
                         <label for="exampleFormControlInput1" class="form-label">Diện tích phòng</label>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <input class="form-control"  placeholder="nhập diện tích phòng"
+                                <input class="form-control" type="number" placeholder="nhập diện tích phòng"
                                     formControlName="dienTich" />
                                 <div class="input-group-append">
                                     <div class="input-group-text">
@@ -140,11 +135,51 @@
                                 Diện tích không được để trống
                             </span>
                         </div>
+
+
+                        <label for="exampleFormControlInput1" class="form-label">Số người lớn tối đa</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" placeholder="nhập số người"
+                                    formControlName="maxNguoiLon" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('maxNguoiLon')?.touched && reactiveForm.get('maxNguoiLon')?.invalid">
+                                Số người không được để trống
+                            </span>
+                        </div>
+
+                        <label for="exampleFormControlInput1" class="form-label">Số trẻ em tối đa</label>
+                        <div class="input-group my-2">
+                            <div class="input-group">
+                                <input class="form-control" type="number" placeholder="nhập số người"
+                                    formControlName="maxTreEm" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-map"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="color: red"
+                                *ngIf="reactiveForm.get('maxTreEm')?.touched && reactiveForm.get('maxTreEm')?.invalid">
+                                Số người không được để trống
+                            </span>
+                        </div>
+
                         <label for="exampleFormControlInput1" class="form-label">Mô tả</label>
                         <div class="input-group my-2">
                             <div class="input-group">
-                                <textarea class="form-control" formControlName="content"
-                                    placeholder="Nhập mô tả" id="floatingTextarea"></textarea>
+                                <textarea class="form-control" formControlName="content" placeholder="Nhập mô tả"
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </div>
                         <div>

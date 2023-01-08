@@ -16,8 +16,11 @@ export class CreatePhongComponent implements OnInit {
   reactiveForm!: FormGroup
   listAvatars: any[] = []
   subSupplements:any[]=[]
+  bedRoom: any[]=[]
   tiennghi!: any
+  loaigiuong!: any
   checkSupplement: boolean = true
+  checkBedRoom: boolean = true
   touching: boolean = false
 
   idHotel: any
@@ -27,15 +30,19 @@ export class CreatePhongComponent implements OnInit {
     this.httpRequest.getAllTienNghiPhong().subscribe((data: any) => {
       this.tiennghi = data.dataSupplements
     })
-    
+    this.httpRequest.getAllLoaiGiuong().subscribe((data: any) => {
+      this.loaigiuong = data.dataSleeping
+    })
+
     this.reactiveForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       avatar: new FormControl(null, [Validators.required, this.checkFormatImage]),
       price: new FormControl(null, Validators.required),
       sophong: new FormControl(null, Validators.required),
-      sogiuong: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required),
       dienTich: new FormControl(null, Validators.required),
+      maxNguoiLon: new FormControl(null, Validators.required),
+      maxTreEm: new FormControl(null, Validators.required),
     })
    
   }
@@ -43,14 +50,22 @@ export class CreatePhongComponent implements OnInit {
   onsubmit() {
     this.touching = true
     let totalTienNghi = 0
+    let totalBedroom = 0
     const tiennghi = document.querySelectorAll('.tiennghi')
     const avatars: any = document.querySelector('#avatarInput')
+    const bedroom = document.querySelectorAll('.bedroom')
     tiennghi.forEach((items: any) => {
       if (items.checked) {
         totalTienNghi += 1
       }
     })
-    if(!this.reactiveForm.valid || avatars.files.length==0 || totalTienNghi==0){
+    bedroom.forEach((items: any) => {
+      if (items.checked) {
+        totalBedroom += 1
+      }
+    })
+
+    if(!this.reactiveForm.valid || avatars.files.length==0 || totalTienNghi==0 || totalBedroom==0){
       this.toastr.error({detail:"Notice",summary:"Check!, Your Information is missing.",duration:6000,})
     }else{
           this.spiner.show(undefined,{
@@ -68,6 +83,14 @@ export class CreatePhongComponent implements OnInit {
             })
             }
           })
+          bedroom.forEach((item:any)=>{
+            if(item.checked){
+            this.httpRequest.getBedroomById({id:item.value}).subscribe((data:any)=>{
+                this.bedRoom.push(data.dataSleeping)
+            })
+            }
+          })
+          
           setTimeout(()=>{
             const dataAddForm = {
               idHotel:this.idHotel,
@@ -77,21 +100,26 @@ export class CreatePhongComponent implements OnInit {
               TienNghiPhong:this.subSupplements,
               dienTich:this.reactiveForm.get('dienTich')?.value,
               SoPhong:this.reactiveForm.get('sophong')?.value,
-              SoGiuong:this.reactiveForm.get('sogiuong')?.value,
               mota:this.reactiveForm.get('content')?.value,
+              MaxNguoiLon:this.reactiveForm.get('maxNguoiLon')?.value,
+              MaxTreEm:this.reactiveForm.get('maxTreEm')?.value,
+              bedroom:this.bedRoom,
             }
             this.httpRequest.createPhong(dataAddForm).subscribe((data:any)=>{
               this.reactiveForm.reset()
               tiennghi.forEach((items:any)=>{
                 items.checked = false
               })
+              bedroom.forEach((items:any)=>{
+                items.checked = false
+              })
               this.spiner.hide()
-              this.toastr.success({detail:"Success",summary:"thêm thành công!.",duration:5000,})
+              this.toastr.success({detail:"Success",summary:"thêm thành công!.",duration:3000,})
               
             })
             this.router.navigate(['admin/listphong'])
             this.router.resetConfig
-          },7000)
+          },4000)
         }
   }
 
@@ -109,6 +137,12 @@ export class CreatePhongComponent implements OnInit {
   supplementCheckbox(checkBox: any) {
     if (checkBox.target.checked) {
       this.checkSupplement = false
+    }
+  }
+
+  bedRoomCheckbox(checkBox: any) {
+    if (checkBox.target.checked) {
+      this.checkBedRoom = false
     }
   }
 
