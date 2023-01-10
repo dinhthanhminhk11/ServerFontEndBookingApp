@@ -1,0 +1,215 @@
+<div class="wrapper">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="" class="brand-link">
+        <img src="https://picsum.photos/200" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: 0.8" />
+        <span class="brand-text font-weight-light">Xin chào</span>
+      </a>
+  
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="https://picsum.photos/200" class="img-circle elevation-2" alt="User Image" />
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{{nameUser}}</a>
+          </div>
+        </div>
+  
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+          <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
+            <div class="input-group-append">
+              <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item btn-secondary">
+              <a routerLink="/admin" class="nav-link">
+                <i class="nav-icon fas fa-th "></i>
+                <p>
+                  Trang chủ
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/products" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Đối tác
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/" class="nav-link" (click)="logout()">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Đăng xuất
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+
+    <body style="margin-left: 260px; margin-right: 18px; margin-top: 50px;">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3></h3>
+                  <p>Tổng số lượt đặt phòng</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+                <a routerLink="/admin/order" class="nav-link small-box-footer">Chi tiết<i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3><sup style="font-size: 20px"></sup></h3>
+          
+                  <p>Đã hoàn thành</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a routerLink="/admin/order" class="nav-link small-box-footer">Chi tiết <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3></h3>
+                  <p>Đang chờ</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a routerLink="/admin/order" class="nav-link small-box-footer">Chi tiết <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3></h3>
+                  <p>Đã hủy</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-pie-graph"></i>
+                </div>
+                <a routerLink="/admin/order" class="nav-link small-box-footer">Chi tiết <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-12">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h2 class="text-center" style="font-size: 20px">Lượt đặt phòng hôm nay: </h2>
+                </div>
+                <a routerLink="/admin/order" class="nav-link small-box-footer">Chi tiết <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          
+          
+          
+            <div class="col-xl-6 col-md-12 mb-4">
+              <div class="card border-left-primary shadow h-100">
+                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                  <h6 style="margin-top: 10px" class="font-weight-bold text-primary text-uppercase ">Doanh thu từ đặt phòng
+                    </h6>
+                  <div class="dropdown no-arrow" style="margin-left: 200px;">
+                    <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                      data-bs-target="#dropdownRevenueDay">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu shadow animated-fade-in" aria-labelledby="dropdownRevenueDay"
+                      style="max-height: 180px; overflow: auto;">
+                      <div class="dropdown-header bg-light" style="position: sticky; top: 0;">
+             
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div id="textDisplay" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          
+          
+          
+            <div class="col-xl-6 col-md-12 mb-4">
+              <div class="card border-left-primary shadow h-100">
+                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                  <h6 style="margin-top: 10px;" class="font-weight-bold text-primary text-uppercase">Doanh thu đang chờ</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-xl-12 col-md-12 mb-4">
+              <div class="card border-left-primary shadow h-100">
+                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                  <h6 style="margin-top: 10px;" class="col-4 font-weight-bold text-primary text-uppercase">Doanh thu theo khoảng
+                    ngày</h6>
+                  <div class="row mt-2 col-5" ng-if="saleReturn.saleType == 0">
+                    <div class="col-md-6" style="margin: 25;">
+                      <input #startDate type="date" class="form-control" id="startdate">
+                    </div> 
+                    <div class="col-md-6">
+                      <input #endDate type="date" class="form-control" id="enddate" >
+                    </div>
+                  </div>
+                  <div style="margin-top: 10px;"><button style="width: 100px;" class="btn btn-primary" >Tìm</button></div>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+  </div>

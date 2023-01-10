@@ -148,7 +148,7 @@
           <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a routerLink="/admin" class="nav-link">
+            <a routerLink="/host" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Trang chủ
@@ -157,7 +157,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/admin/products" class="nav-link">
+            <a routerLink="/host/products" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Khách sạn
@@ -165,7 +165,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/admin/order" class="nav-link">
+            <a routerLink="/host/order" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Hóa đơn
@@ -173,7 +173,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/admin/Message" class="nav-link">
+            <a routerLink="/host/Message" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Tin nhắn
@@ -181,7 +181,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/admin/feedback" class="nav-link">
+            <a routerLink="/host/feedback" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Đánh giá
@@ -190,7 +190,7 @@
           </li>
 
           <li class="nav-item">
-            <a routerLink="/" class="nav-link">
+            <a routerLink="/" class="nav-link" (click)="logout()" >
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Đăng xuất

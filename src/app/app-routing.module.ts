@@ -19,10 +19,11 @@ import { UpdateHotelComponent } from './components/admin/product/update-hotel/up
 import { ListPhongComponent } from './components/admin/phong/listPhong/list-phong/list-phong.component';
 import { CreatePhongComponent } from './components/admin/phong/listPhong/createPhong/create-phong/create-phong.component';
 import { UpdatePhongComponent } from './components/admin/phong/listPhong/updatePhong/update-phong/update-phong.component';
+import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 
 const routes: Routes = [
   {
-    path: 'admin', component: LayoutComponent, canActivate: [AuthGuard], children: [
+    path: 'host', component: LayoutComponent, canActivate: [AuthGuard], children: [
       { path: '', component: DashboardComponent },
       {
         path: 'products', component: ProductComponent, children: [
@@ -41,6 +42,9 @@ const routes: Routes = [
       { path: 'admin', component: StatisticalComponent },
     ]
   },
+  {path: 'admin',  component: HeaderAdminComponent, canActivate: [AuthGuard], children: [
+    
+  ]},
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotPageComponent },
