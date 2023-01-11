@@ -306,4 +306,13 @@ export class HttpservicesService {
     return this.httpRequests.get<any>(`${this.API}/getUser/${data.idUser}`)
   }
 
+
+  // getListHost
+  getAllHost() : Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getAllHost`)
+  }
+
+  getCountHotelById(data: any): Observable<any>{
+    return this.httpRequests.get<any>(`${this.API}/getCountHotelById/${data.idUser}`)
+  }
 }

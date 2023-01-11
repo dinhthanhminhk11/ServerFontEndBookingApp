@@ -31,7 +31,9 @@ import { UpdateHotelComponent } from './components/admin/product/update-hotel/up
 import { ListPhongComponent } from './components/admin/phong/listPhong/list-phong/list-phong.component';
 import { CreatePhongComponent } from './components/admin/phong/listPhong/createPhong/create-phong/create-phong.component';
 import { UpdatePhongComponent } from './components/admin/phong/listPhong/updatePhong/update-phong/update-phong.component';
-import { HeaderAdminComponent } from './components/header-admin/header-admin.component'
+import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
+import { ListPartnetComponent } from './partner/list-partnet/list-partnet.component';
+import { ListHotelComponent } from './partner/list-hotel/list-hotel.component'
 
 
 @NgModule({
@@ -61,6 +63,8 @@ import { HeaderAdminComponent } from './components/header-admin/header-admin.com
     CreatePhongComponent,
     UpdatePhongComponent,
     HeaderAdminComponent,
+    ListPartnetComponent,
+    ListHotelComponent,
     
   ],
   imports: [

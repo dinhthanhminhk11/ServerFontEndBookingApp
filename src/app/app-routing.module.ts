@@ -20,6 +20,8 @@ import { ListPhongComponent } from './components/admin/phong/listPhong/list-phon
 import { CreatePhongComponent } from './components/admin/phong/listPhong/createPhong/create-phong/create-phong.component';
 import { UpdatePhongComponent } from './components/admin/phong/listPhong/updatePhong/update-phong/update-phong.component';
 import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
+import { ListPartnetComponent } from './partner/list-partnet/list-partnet.component';
+import { ListHotelComponent } from './partner/list-hotel/list-hotel.component';
 
 const routes: Routes = [
   {
@@ -42,9 +44,9 @@ const routes: Routes = [
       { path: 'admin', component: StatisticalComponent },
     ]
   },
-  {path: 'admin',  component: HeaderAdminComponent, canActivate: [AuthGuard], children: [
-    
-  ]},
+  {path: 'admin',  component: HeaderAdminComponent},
+  {path: 'admin/listPartnet' , component: ListPartnetComponent},
+  {path: 'admin/listHotel' , component: ListHotelComponent},
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotPageComponent },

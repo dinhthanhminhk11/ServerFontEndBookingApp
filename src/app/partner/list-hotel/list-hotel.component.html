@@ -1,0 +1,102 @@
+<div class="wrapper">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="" class="brand-link">
+            <img src="https://picsum.photos/200" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                style="opacity: 0.8" />
+            <span class="brand-text font-weight-light">Xin chào</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="https://picsum.photos/200" class="img-circle elevation-2" alt="User Image" />
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">{{nameUser}}</a>
+                </div>
+            </div>
+
+            <!-- SidebarSearch Form -->
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                        aria-label="Search" />
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-item ">
+                        <a routerLink="/admin" class="nav-link">
+                            <i class="nav-icon fas fa-th "></i>
+                            <p>
+                                Trang chủ
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item btn-secondary">
+                        <a routerLink="/admin/listPartnet" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Đối tác
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/" class="nav-link" (click)="logout()">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Đăng xuất
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+
+
+
+    <body style="margin-left: 260px; margin-right: 18px; margin-top: 50px;">
+        <table class="table table-bordered table-hover" style="margin-top: 15px;">
+            <thead>
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Tên khách sạn</th>
+                    <th scope="col">Địa chỉ </th>
+                    <th scope="col">Ảnh xác thực</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of listDoiTac">
+                    <td>#</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.email}} vnđ</td>
+                    <td>{{data.phone}}</td>
+                    <!-- <td>{{data.}}</td> -->
+                    <td class="text-center"><a href="" ><button type="button"
+                                class="btn btn-primary">Chấp thuận</button></a></td>
+                    <td class="text-center"><a href="" ><button type="button"
+                                class="btn btn-info">Từ chối</button></a></td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class=" spinner-border" role="status" *ngIf="load==true">
+                <span class=" visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </body>
+</div>
