@@ -174,7 +174,7 @@ export class UpdatePhongComponent implements OnInit {
             })
             this.spiner.hide()
             this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration: 3000, })
-            this.router.navigate(['admin/listphong'])
+            this.router.navigate(['host/listphong'])
             this.router.resetConfig
           })
         }, 4000)

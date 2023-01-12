@@ -21,7 +21,9 @@ export class ListPartnetComponent implements OnInit {
       this.nameUser = this.MessageService.getStorage().name
     }
     this.http.getAllHost().subscribe((data: any) => {
-      this.listDoiTac = data.data
+      this.listDoiTac = data
+      console.log(data);
+      
       this.load = false
     })
 
@@ -39,6 +41,6 @@ export class ListPartnetComponent implements OnInit {
   }
 
   getIdUser(data: any){
-    localStorage.setItem("idUserHost", data)
+    localStorage.setItem("idUserHost", JSON.stringify(data))
   }
 }

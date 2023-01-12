@@ -79,16 +79,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of listDoiTac">
+                <tr *ngFor="let data of listHotel">
                     <td>#</td>
                     <td>{{data.name}}</td>
-                    <td>{{data.email}} vnđ</td>
-                    <td>{{data.phone}}</td>
+                    <td>{{data.sonha}}-{{data.xa}}-{{data.huyen}}-{{data.tinh}}</td>
+                    <td *ngFor="let data of data.imageConfirm">
+                        <a href="{{data}}" target="_blank"><img src="{{data}}" alt="" width="100" height="100"></a>
+                    </td>
                     <!-- <td>{{data.}}</td> -->
-                    <td class="text-center"><a href="" ><button type="button"
-                                class="btn btn-primary">Chấp thuận</button></a></td>
-                    <td class="text-center"><a href="" ><button type="button"
-                                class="btn btn-info">Từ chối</button></a></td>
+                    <td class="text-center"><button type="button" class="btn btn-primary"
+                            [ngClass]="(data.checkConfirm == true) ? 'disabled':''"
+                            (click)="conFirmHotle(data._id)"
+                            >Chấp thuận</button></td>
+                    <td class="text-center"><button type="button"
+                            [ngClass]="(data.checkConfirm == false) ? 'disabled':''" class="btn btn-info"
+                            (click)="disConFirmHotel(data._id)"
+                            >Từchối</button></td>
                 </tr>
             </tbody>
 

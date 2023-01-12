@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th scope="col">Mã hoá đơn</th>
-            <th scope="col">Tên Nhà</th>
+            <th scope="col">Tên phòng</th>
             <th scope="col">Người dùng</th>
             <th scope="col">Giá</th>
             <th scope="col">Số ngày</th>
@@ -16,13 +16,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of dataOrderList">
-            <th>{{data.idOder}}</th>
-            <td>{{data.namePro}}</td>
+            <th>{{data.data.idOrder}}</th>
+            <td>{{data.namePhong}} ({{data.nameHotel}})</td>
             <td>{{data.nameUser}}</td>
-            <td>{{data.price}}</td>
-            <td>{{data.day}}</td>
-            <td>{{data.status=="Khách huỷ"?data.status+': '+data.reasonUser:data.status}}</td>
-            <td>{{data.cashMoney?'tiền mặt':data.banking?'Đã chuyển khoản':data.isBackingPercent?'Đã cọc':'' }}</td>
+            <td>{{data.data.priceAll}}</td>
+            <td>{{data.data.payDay}}</td>
+            <td>{{data.data.status=="Khách huỷ"?data.data.status+': '+data.data.reasonUser:data.data.status}}</td>
+            <td>{{data.data.cashMoney?'tiền mặt':data.data.banking?'Đã chuyển khoản':data.data.isBackingPercent?'Đã cọc':'' }}</td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
                     (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>

@@ -1,6 +1,6 @@
 <div class="btn-group" >
-    <a routerLink="/admin/createphong" class="btn btn-primary active" aria-current="page">Thêm phòng</a>
-    <a routerLink="/admin/listphong" class="btn btn-primary">danh sách phòng</a>
+    <a routerLink="/host/createphong" class="btn btn-primary active" aria-current="page">Thêm phòng</a>
+    <a routerLink="/host/listphong" class="btn btn-primary">danh sách phòng</a>
 </div>
 <div class="col-12" style="margin-bottom: 25px;">
 </div>
@@ -23,7 +23,7 @@
             <td>{{data.price}} vnđ</td>
             <td>{{data.SoPhong}}</td>
             <td>{{data.dienTich}} m²</td>
-            <td><a href="" routerLink="/admin/updatephong"><button type="button"
+            <td><a href="" routerLink="/host/updatephong"><button type="button"
                         class="btn btn-info" (click)="getIdPhong(data._id)">Sửa</button></a></td>
             <td><button type="button" class="btn btn-danger" (click)="deletePhong(data._id)">xóa</button>
             </td>

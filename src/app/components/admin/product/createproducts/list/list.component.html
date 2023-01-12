@@ -16,11 +16,11 @@
             <td>{{data.name}}</td>
             <td>{{data.sonha}} - {{data.xa}} - {{data.huyen}} - {{data.tinh}}</td>
             <td>{{data.checkConfirm == true? "Khách sạn đã được chấp thuận":"Khách sạn chưa được chấp thuận"}}</td>
-            <td><a href="" routerLink="/admin/updatehotel"><button type="button"
+            <td><a href="" routerLink="/host/updatehotel"><button type="button"
                         class="btn btn-info" (click)="getIdHotel(data._id)">Sửa</button></a></td>
             <td><button type="button" class="btn btn-danger" (click)="deleteHouse(data._id)">xóa</button>
             </td>
-            <td><button type="button" class="btn btn-primary" routerLink="/admin/listphong"
+            <td><button type="button" class="btn btn-primary" routerLink="/host/listphong"
                 (click)="getHotel(data)">Xem Phòng</button>
             </td>
         </tr>

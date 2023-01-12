@@ -322,7 +322,7 @@ export class UpdateHotelComponent implements OnInit {
             this.toastr.success({ detail: "Success", summary: "sửa thành công!.", duration: 2000, })
 
           })
-          this.router.navigate(['admin/products'])
+          this.router.navigate(['host/products'])
           this.router.resetConfig
         }, 3000)
       }

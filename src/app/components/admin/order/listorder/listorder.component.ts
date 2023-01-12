@@ -16,9 +16,10 @@ export class ListorderComponent implements OnInit {
 
   ngOnInit(): void {
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
-    this.http.listOrder({idHost:this.idHost}).subscribe((Listdata:any)=>{
+    this.http.getAllOrderByHost({idHost:this.idHost}).subscribe((Listdata:any)=>{
       this.loading=false
-      this.dataOrderList=Listdata.data    
+      this.dataOrderList=Listdata    
+      
     })
   }
   cancelHandler(id:any){

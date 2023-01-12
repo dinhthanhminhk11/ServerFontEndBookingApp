@@ -132,6 +132,11 @@ export class HttpservicesService {
   listOrder(dataHost: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/order`, dataHost)
   }
+
+  getAllOrderByHost(data: any): Observable<any[]> {
+    return this.httpRequests.get<any[]>(`${this.API}/getAllOrderById/${data.idHost}`)
+  }
+
   updateOrder(data: any): Observable<any[]> {
     return this.httpRequests.patch<any[]>(`${this.API}/order/${data.id}`, data)
   }
@@ -295,7 +300,7 @@ export class HttpservicesService {
   }
 
   getHotelById(data: any): Observable<any[]>{
-    return this.httpRequests.get<any[]>(`${this.API}/getHotelById/${data.id}`)
+    return this.httpRequests.get<any[]>(`${this.API}/getHotelByIdWeb/${data.id}`)
   }
 
   getFeedbackId(data: any): Observable<any[]>{
@@ -314,5 +319,9 @@ export class HttpservicesService {
 
   getCountHotelById(data: any): Observable<any>{
     return this.httpRequests.get<any>(`${this.API}/getCountHotelById/${data.idUser}`)
+  }
+
+  confirmHotel(data: any): Observable<any>{
+    return this.httpRequests.get<any>(`${this.API}/confirmHotel/${data.id}&${data.check}`)
   }
 }
