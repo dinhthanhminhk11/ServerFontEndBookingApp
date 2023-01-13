@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.priceSearch = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(0)
     this.idHost = JSON.parse(localStorage.getItem('host')!).id;
+    console.log(this.idHost);
+    
     this.http.getCountOrder({ IdHost: this.idHost }).subscribe((data: any) => {
       this.count = data
     })
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
       var sumPrice = 0
       array = data.data
       for (let i = 0; i < array.length; i++) {
-        sumPrice += parseInt(array[i].price)
+        sumPrice += parseInt(array[i].priceEnterprise)
       }
       this.sumPriceWaiting = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
     })
@@ -62,7 +64,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceDay = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
@@ -77,7 +79,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceLastDay = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
@@ -90,7 +92,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceWeek = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
@@ -103,7 +105,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceMonth = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
@@ -115,7 +117,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceYear = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
@@ -138,7 +140,7 @@ export class DashboardComponent implements OnInit {
       array = data.data
       if (array.length != 0) {
         for (let i = 0; i < array.length; i++) {
-          sumPrice += parseInt(array[i].price)
+          sumPrice += parseInt(array[i].priceEnterprise)
         }
       }
       this.priceSearch = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
