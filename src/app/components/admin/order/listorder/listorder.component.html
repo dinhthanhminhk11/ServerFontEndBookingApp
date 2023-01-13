@@ -25,18 +25,18 @@
             <td>{{data.data.cashMoney?'tiền mặt':data.data.banking?'Đã chuyển khoản':data.data.isBackingPercent?'Đã cọc':'' }}</td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==true) ? 'disabled' :''"
-                    (click)="confirmHandler(data.idOder)">Xác nhận phòng</button>
+                    (click)="confirmHandler(data._id)">Xác nhận phòng</button>
                     <button type="button" class="btn btn-danger" [ngClass]="(data.seem == true) ? 'disabled':''"
-                    (click)="cancelHandler(data.idOder)">Huỷ Phòng</button>
+                    (click)="cancelHandler(data._id)">Huỷ Phòng</button>
             </td>
           
             <td>
                 <button type="button" class="btn btn-danger"  [ngClass]=" (data.status ==='Khách huỷ' && data.isCancellationDate == true || data.status ==='Đang chờ' || data.status ==='Chủ đã huỷ' || data.status ==='Đã xác nhận'|| data.status ==='Đã trả phòng') ? 'disabled' :''"
-                (click)="confirmCancelAccess(data.idOder) ">Chấp nhận huỷ</button>
+                (click)="confirmCancelAccess(data._id) ">Chấp nhận huỷ</button>
             </td>
             <td>
                 <button type="button" class="btn btn-success" [ngClass]=" (data.seem==false || data.status ==='Đã trả phòng'|| data.status ==='Chủ đã huỷ'|| data.status ==='Khách huỷ') ? 'disabled' :''"
-                (click)="clickMethod(data.idOder)"  >Hoàn tất</button>
+                (click)="clickMethod(data._id)"  >Hoàn tất</button>
                 
             </td>
         </tr>

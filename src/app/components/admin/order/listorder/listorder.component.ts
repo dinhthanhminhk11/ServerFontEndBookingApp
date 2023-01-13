@@ -30,13 +30,13 @@ export class ListorderComponent implements OnInit {
         resault.status = data.data.status
         resault.seem = data.data.seem
         resault.reasonHost = data.data.reasonHost
-        this.http.ListOrders.next({id:id})
-        this.http.sendCancel(resault)
+        // this.http.ListOrders.next({id:id})
+        // this.http.sendCancel(resault)
       })
-
+      window.location.reload();
     this.http.senNotificationCancel({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
     this.http.sendMailComfirmCancelByHostPost({id:id ,reasonHost : argree}).subscribe((data:any)=>{})
-    this.http.createNotiCancel({id:id}).subscribe((data:any)=>{})
+    // this.http.createNotiCancel({id:id}).subscribe((data:any)=>{})
     }
   }
   confirmHandler(id:any){
@@ -46,13 +46,13 @@ export class ListorderComponent implements OnInit {
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.seem = data.data.seem
-        this.http.ListOrders.next({id:id})
-        this.http.sendConfirm(resault)
+        // this.http.ListOrders.next({id:id})
+        // this.http.sendConfirm(resault)
       })
       window.location.reload();
       this.http.senNotificationAccess({id:id}).subscribe((data:any)=>{})
       this.http.senMailnAccess({id:id}).subscribe((data:any)=>{})
-      this.http.createNotiAccess({id:id}).subscribe((data:any)=>{})
+      // this.http.createNotiAccess({id:id}).subscribe((data:any)=>{})
     } 
   }
   createOrder(){
@@ -78,11 +78,12 @@ export class ListorderComponent implements OnInit {
       this.http.checkedOutRoom({id:id}).subscribe((data:any)=>{
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
-        this.http.ListOrders.next({id:id})
+        // this.http.ListOrders.next({id:id})
       })
+      window.location.reload();
       this.http.senNotificationRequestCheckOut({id:id}).subscribe((data:any)=>{})
       this.http.senMailCheckOut({id:id}).subscribe((data:any)=>{})
-      this.http.createNotiSuccess({id:id}).subscribe((data:any)=>{})
+      // this.http.createNotiSuccess({id:id}).subscribe((data:any)=>{})
     }
   }
 
@@ -93,13 +94,13 @@ export class ListorderComponent implements OnInit {
         const resault = this.dataOrderList.find((item)=>item.idOder == id)
         resault.status = data.data.status
         resault.isCancellationDate = data.data.isCancellationDate
-        this.http.ListOrders.next({id:id})
-        this.http.sendConfirmCancelAccess(resault)
+        // this.http.ListOrders.next({id:id})
+        // this.http.sendConfirmCancelAccess(resault)
       })
       window.location.reload();
       this.http.senNotificationRequestCancel({id:id}).subscribe((data:any)=>{})
       this.http.sendMailComfirmCancelByUserPost({id:id}).subscribe((data:any)=>{})
-      this.http.createNotiAccessCancel({id:id}).subscribe((data:any)=>{})
+      // this.http.createNotiAccessCancel({id:id}).subscribe((data:any)=>{})
     } 
     this.refresh()
   }
