@@ -22,6 +22,7 @@ import { UpdatePhongComponent } from './components/admin/phong/listPhong/updateP
 import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 import { ListPartnetComponent } from './partner/list-partnet/list-partnet.component';
 import { ListHotelComponent } from './partner/list-hotel/list-hotel.component';
+import { ListOrderComponent } from './partner/order/list-order/list-order.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'admin',  component: HeaderAdminComponent},
   {path: 'admin/listPartnet' , component: ListPartnetComponent},
   {path: 'admin/listHotel' , component: ListHotelComponent},
+  {path: 'admin/listOrder' , component: ListOrderComponent},
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', component: NotPageComponent },

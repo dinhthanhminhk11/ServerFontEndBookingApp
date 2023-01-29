@@ -137,6 +137,10 @@ export class HttpservicesService {
     return this.httpRequests.get<any[]>(`${this.API}/getAllOrderById/${data.idHost}`)
   }
 
+  getAllOrderAdmin(): Observable<any[]> {
+    return this.httpRequests.get<any[]>(`${this.API}/getAllOrder`)
+  }
+
   updateOrder(data: any): Observable<any[]> {
     return this.httpRequests.patch<any[]>(`${this.API}/order/${data.id}`, data)
   }
@@ -247,24 +251,54 @@ export class HttpservicesService {
   getCountOrder(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/totalOrder/${data.IdHost}`)
   }
+
+  getAllCountOrder(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalAllOrder`)
+  }
+
   getCountOrderProcess(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/totalOrderProcess/${data.IdHost}`)
   }
+
+  getCountAllOrderProcess(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalAllOrderProcess`)
+  } 
+
   getCountOrderFinish(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/totalOrderFinish/${data.IdHost}`)
   }
+
+  getCountAllOrderFinish(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalAllOrderFinish`)
+  }
+
   getCountOrderFail(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/totalOrderFail/${data.IdHost}`)
   }
+  getCountAllOrderFail(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/totalAllOrderFail`)
+  }
   getTimeOrder(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getTimeOrder/${data.IdHost}`)
+  }
+  getAllTimeOrder(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getAllTimeOrder`)
   }
 
   getPriceWaiting(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceWaiting/${data.IdHost}`)
   }
+
+  getPriceAdminWaiting(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceAdminWaiting`)
+  }
+
   getPriceDay(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceDayOrder/${data.IdHost}`)
+  }
+
+  getTotalPriceAdmin(): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getTotalPriceAdmin`)
   }
   getPriceLastDay(data: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceDayLastOrder/${data.IdHost}`)
@@ -281,6 +315,10 @@ export class HttpservicesService {
 
   getPriceSearch(IdHost: any,startDay: any, endDay: any): Observable<any[]>{
     return this.httpRequests.get<any[]>(`${this.API}/getPriceOrder/${IdHost}&${startDay}&${endDay}`)
+  }
+
+  getPriceSearchAdmin(startDay: any, endDay: any): Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getPriceAdminOrder/${startDay}&${endDay}`)
   }
 
   changeIdHouse(IdHouse: string) {
