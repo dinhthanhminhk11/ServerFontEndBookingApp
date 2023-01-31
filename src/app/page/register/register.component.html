@@ -122,9 +122,9 @@
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" formControlName="agree" name="terms" value="agree">
+                <input type="checkbox" id="agreeTerms" formControlName="agree" value="agree">
                 <label for="agreeTerms">
-                  I agree to the <a href="#">terms</a>
+                  I agree to the <a href="terms">terms</a>
                 </label>
               </div>
               <span style="color: red" *ngIf="reactiveForm.get('agree')?.touched  && !reactiveForm.get('agree')?.value">

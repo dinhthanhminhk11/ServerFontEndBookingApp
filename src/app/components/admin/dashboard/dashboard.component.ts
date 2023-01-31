@@ -70,7 +70,6 @@ export class DashboardComponent implements OnInit {
       this.priceDay = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumPrice)
       this.price = this.priceDay
       this.checkDay = "Hôm nay"
-
     })
 
     this.http.getPriceLastDay({ IdHost: this.idHost }).subscribe((data: any) => {
