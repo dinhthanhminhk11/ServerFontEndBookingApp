@@ -19,14 +19,14 @@ export class HttpservicesService {
   private IdPhong= new BehaviorSubject<string>('');
   currentIDPhong= this.IdPhong.asObservable();
 
-  public url = 'http://localhost:8080'
+  public url = 'https://rough-hill-5837.fly.dev'
   constructor(private httpRequests: HttpClient) {
     this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] })
     if (localStorage.getItem('host')) {
       this.socket.emit('hostIp', JSON.parse(localStorage.getItem('host')!).id)
     }
   }
-  API = 'http://localhost:8080/api'
+  API = 'https://rough-hill-5837.fly.dev/api'
   createHost(dataHost: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/host/signup`, dataHost)
   }
