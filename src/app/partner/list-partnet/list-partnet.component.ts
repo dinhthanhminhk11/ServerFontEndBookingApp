@@ -23,7 +23,6 @@ export class ListPartnetComponent implements OnInit {
     this.http.getAllHost().subscribe((data: any) => {
       this.listDoiTac = data
       console.log(data);
-      
       this.load = false
     })
 

@@ -32,7 +32,7 @@
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a routerLink="/admin" class="nav-link">
               <i class="nav-icon fas fa-th "></i>
               <p>
@@ -48,15 +48,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a routerLink="/admin/listUser" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Khách hàng
-                </p>
-            </a>
-        </li>
           <li class="nav-item btn-secondary">
+            <a routerLink="/admin/listUser" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Khách hàng
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a routerLink="/admin/listOrder" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -77,42 +77,41 @@
     </div>
   </aside>
 
+
+
+
   <body style="margin-left: 260px; margin-right: 18px; margin-top: 30px;">
-    <h3 class="text-center" style="margin: 15px;">Danh sách tất cả hóa đơn</h3>
-    <table class="table table-bordered table-hover">
+    <h3 class="text-center">Danh sách Khách hàng</h3>
+    <table class="table table-bordered table-hover" style="margin-top: 15px;">
       <thead>
-          <tr>
-              <th scope="col"></th>
-              <th scope="col">Tên khách sạn</th>
-              <th scope="col">Tên phòng</th>
-              <th scope="col">Khách hàng đặt</th>
-              <th scope="col">Đối tác</th>
-              <th scope="col">Giá</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Thanh toán</th>
-              
-          </tr>
+        <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">Tên khách hàng</th>
+          <th scope="col">Email</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let data of dataOrderList">
-              <th>#</th>
-              <td>{{data.nameHotel}}</td>
-              <td>{{data.namePhong}}</td>
-              <td>{{data.nameUser}} ({{data.emailUser}})</td>
-              <td>{{data.nameHost}} ({{data.emailHost}})</td>
-              <td>{{data.data.priceAll}} VNĐ</td>
-              <td>{{data.data.status=="Khách huỷ"?data.data.status+': '+data.data.reasonUser:data.data.status}}</td>
-              <td>{{data.data.cashMoney?'tiền mặt':data.data.banking?'Đã chuyển khoản':data.data.isBackingPercent?'Đã cọc':'' }}</td>
-          </tr>
+        <tr *ngFor="let data of listdataUser">
+          <td>#</td>
+          <td>{{data.name}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.checkAccount == true ? "đang hoạt động":"Bị khóa: "+data.reason}}</td>
+          <td class="text-center"><button type="button" (click)="unLock(data._id)" class="btn btn-primary"
+              [ngClass]="(data.checkAccount == true) ? 'disabled':''">Mở tài khoản</button></td>
+          <td class="text-center"><button type="button" (click)="Lock(data._id)"
+              [ngClass]="(data.checkAccount == false) ? 'disabled':''" class="btn btn-danger">Khóa tài khoản</button>
+          </td>
+        </tr>
       </tbody>
-  </table>
 
-
-
+    </table>
     <div class="d-flex justify-content-center align-items-center">
       <div class=" spinner-border" role="status" *ngIf="loading==true">
-          <span class=" visually-hidden">Loading...</span>
+        <span class=" visually-hidden">Loading...</span>
       </div>
-  </div>
+    </div>
   </body>
 </div>

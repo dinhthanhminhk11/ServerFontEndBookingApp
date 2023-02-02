@@ -35,7 +35,8 @@ import { HeaderAdminComponent } from './components/header-admin/header-admin.com
 import { ListPartnetComponent } from './partner/list-partnet/list-partnet.component';
 import { ListHotelComponent } from './partner/list-hotel/list-hotel.component';
 import { ListOrderComponent } from './partner/order/list-order/list-order.component';
-import { TermsComponent } from './terms/terms/terms.component'
+import { TermsComponent } from './terms/terms/terms.component';
+import { ListUserComponent } from './partner/list_user/list-user/list-user.component'
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { TermsComponent } from './terms/terms/terms.component'
     ListHotelComponent,
     ListOrderComponent,
     TermsComponent,
+    ListUserComponent,
     
   ],
   imports: [

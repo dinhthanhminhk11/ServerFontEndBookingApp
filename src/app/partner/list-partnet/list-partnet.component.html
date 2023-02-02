@@ -49,6 +49,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a routerLink="/admin/listUser" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                      Khách hàng
+                  </p>
+              </a>
+          </li>
+            <li class="nav-item">
               <a routerLink="/admin/listOrder" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
@@ -89,7 +97,7 @@
                 <tr *ngFor="let data of listDoiTac">
                     <td>#</td>
                     <td>{{data.data.name}}</td>
-                    <td>{{data.data.email}} vnđ</td>
+                    <td>{{data.data.email}}</td>
                     <td>{{data.data.phone}}</td>
                     <td class="text-center">{{data.getCount}} Khách sạn</td>
                     <td class="text-center"><a href="" routerLink="/admin/listHotel"><button type="button"

@@ -362,4 +362,17 @@ export class HttpservicesService {
   confirmHotel(data: any): Observable<any>{
     return this.httpRequests.get<any>(`${this.API}/confirmHotel/${data.id}&${data.check}`)
   }
+
+  // user
+  getAllUser() : Observable<any[]>{
+    return this.httpRequests.get<any[]>(`${this.API}/getAllUser`)
+  }
+
+  lockAccount(id: any,reason: any): Observable<any>{
+    return this.httpRequests.get<any>(`${this.API}/lockAccountUser/${id}&${reason}`)
+  }
+
+  unLockAccount(id: any): Observable<any>{
+    return this.httpRequests.get<any>(`${this.API}/unLockAccountUser/${id}`)
+  }
 }
