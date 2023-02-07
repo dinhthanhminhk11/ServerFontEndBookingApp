@@ -19,14 +19,14 @@ export class HttpservicesService {
   private IdPhong= new BehaviorSubject<string>('');
   currentIDPhong= this.IdPhong.asObservable();
 
-  public url = 'https://weathered-wind-3010.fly.dev'
+  public url = 'http://localhost:8080'
   constructor(private httpRequests: HttpClient) {
     this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] })
     if (localStorage.getItem('host')) {
       this.socket.emit('hostIp', JSON.parse(localStorage.getItem('host')!).id)
     }
   }
-  API = 'https://weathered-wind-3010.fly.dev/api'
+  API = 'http://localhost:8080/api'
   createHost(dataHost: any): Observable<any[]> {
     return this.httpRequests.post<any[]>(`${this.API}/host/signup`, dataHost)
   }
